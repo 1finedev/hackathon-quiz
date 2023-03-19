@@ -14,8 +14,7 @@ module.exports = {
           100: "#101010"
         },
         secondary:{
-          odd: "#034732",
-          mid: "#008148"
+          mid: "#06BA6B",
         }
       }
     },
