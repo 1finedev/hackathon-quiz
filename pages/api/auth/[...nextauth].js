@@ -6,7 +6,7 @@ import connectToDb from "./../../../backend/connectToDb";
 const cookiePrefix = process.env.NEXT_PUBLIC_COOKIE_PREFIX;
 const useSecureCookies = process.env.NODE_ENV === "production" ? true : false;
 
-export default NextAuth({
+export const authOptions = {
   session: {
     strategy: "jwt",
   },
@@ -128,4 +128,6 @@ export default NextAuth({
     },
   },
   debug: false,
-});
+};
+
+export default NextAuth(authOptions);
