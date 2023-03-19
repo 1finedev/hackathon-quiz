@@ -1,10 +1,12 @@
+
+import HomeScreen from "../components/Homepage/HomeScreen";
+
 import connectToDb from "../backend/connectToDb";
+
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home Page</h1>
-    </div>
+   <HomeScreen />
   );
 };
 
