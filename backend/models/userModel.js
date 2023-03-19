@@ -74,6 +74,18 @@ userSchema.pre(/^find/, function () {
   });
 });
 
+// hash password before saving
+userSchema.pre("save", async function () {
+  // Only run this function if password was actually modified
+  if (!this.isModified("password")) return;
+
+  // Hash the password with cost of 12
+  this.password = await bcrypt.hash(this.password, 12);
+
+  // Delete passwordConfirm field
+  this.confirmPassword = undefined;
+});
+
 // verify user password
 userSchema.methods.correctPassword = async function (
   candidatePassword,
