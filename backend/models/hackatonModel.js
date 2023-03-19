@@ -20,5 +20,5 @@ const hackatonSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Hackaton = mongoose.model("Hackaton", hackatonSchema);
+const Hackaton = mongoose.models.Hackaton ||  mongoose.model("Hackaton", hackatonSchema);
 module.exports = Hackaton;
