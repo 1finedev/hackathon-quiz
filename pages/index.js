@@ -8,4 +8,4 @@ const Home = () => {
 export default Home;
 
 //  to protect this page from unauthorized access
-Home.auth = true;
+// Home.auth = true;

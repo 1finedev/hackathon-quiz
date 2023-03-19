@@ -10,7 +10,7 @@ const Header = ({ className }) => {
   }
 
   return (
-    <header className=" fixed z-10 top-0 w-full shadow flex items-center justify-between bg-secondary-mid h-[60px] md:px-16 px-8 text-white">
+    <header className="fixed z-10 top-0 w-full shadow flex items-center justify-between bg-secondary-mid h-[60px] md:px-16 px-8 text-white">
       {/* Name */}
       <h1 className="text-xl font-semibold ">React Quizzer</h1>
       {/* Nav */}
