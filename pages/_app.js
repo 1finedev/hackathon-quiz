@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import { Manrope } from "next/font/google";
+import Layout from "../components/Layout/Layout";
 
 const manrope = Manrope({
 	weights: [400, 500, 600, 700],
@@ -8,9 +9,9 @@ const manrope = Manrope({
 });
 function MyApp({ Component, pageProps }) {
 	return (
-		<main className={manrope.className}>
+		<Layout className={manrope.className}>
 			<Component {...pageProps} />
-		</main>
+		</Layout>
 	);
 }
 
