@@ -1,21 +1,18 @@
 
 import HomeScreen from "../components/Homepage/HomeScreen";
+import Success from "../components/Success/Success";
 
-import connectToDb from "../backend/connectToDb";
+
 
 
 const Home = () => {
   return (
+    <>
    <HomeScreen />
+    </>
   );
 };
 
 export default Home;
 
-export async function getServerSideProps({ req, res }) {
-  const db = await connectToDb();
 
-  return {
-    props: {},
-  };
-}
