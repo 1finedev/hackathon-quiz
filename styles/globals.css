@@ -2,370 +2,375 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    @apply
-    bg-primary-100
+body {
+  @apply bg-primary-100
     text-white
-    overflow-x-hidden
+    overflow-x-hidden;
 }
 
 .list-circle {
-    list-style: circle;
+  list-style: circle;
 }
 
 @layer base {
-    @supports (-webkit-appearance: none) or (-moz-appearance: none) {
-        input[type=checkbox],
-        input[type=radio] {
-            --checked-color: theme('colors.secondary.mid');
-            --checked-color-inner: theme('colors.white');
-            --focus: 2px theme('colors.green.600');
-            --border-color: theme('colors.gray.300');
-            --border-hover-color: theme('colors.green.400');
-            --background: theme('colors.white');
-            --disabled: theme('colors.gray.100');
-            --disabled-inner: theme('colors.slate.300');
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            height: 21px;
-            outline: none;
-            display: inline-block;
-            vertical-align: top;
-            position: relative;
-            margin: 0;
-            cursor: pointer;
-            border: 1px solid var(--disabled-check-color, var(--border-color));
-            background: var(--b, var(--background));
-            transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
-        }
+  @supports (-webkit-appearance: none) or (-moz-appearance: none) {
+    input[type="checkbox"],
+    input[type="radio"] {
+      --checked-color: theme("colors.secondary.mid");
+      --checked-color-inner: theme("colors.white");
+      --focus: 2px theme("colors.green.600");
+      --border-color: theme("colors.gray.300");
+      --border-hover-color: theme("colors.green.400");
+      --background: theme("colors.white");
+      --disabled: theme("colors.gray.100");
+      --disabled-inner: theme("colors.slate.300");
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      height: 21px;
+      outline: none;
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+      margin: 0;
+      cursor: pointer;
+      border: 1px solid var(--disabled-check-color, var(--border-color));
+      background: var(--b, var(--background));
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
     }
+  }
 
-
-    .btn {
-        @apply
-        py-2
+  .btn {
+    @apply py-2
         px-4
         text-slate-800
         transition-all
         ease-linear;
-    }
+  }
 
-    .btn-primary:hover [class*='fill'],
-    .btn-danger:hover [class*='fill'],
-    .btn-yellow:hover [class*='fill'] {
-        @apply
-        fill-white
-    }
+  .btn-primary:hover [class*="fill"],
+  .btn-danger:hover [class*="fill"],
+  .btn-yellow:hover [class*="fill"] {
+    @apply fill-white;
+  }
 
-    /* =========Button Variants========= */
-    .btn-primary {
-        @apply
-        bg-secondary-mid
+  /* =========Button Variants========= */
+  .btn-primary {
+    @apply bg-secondary-mid
         text-white;
-    }
+  }
 
-    .btn-primary:hover {
-        @apply bg-green-500
-    }
+  .btn-primary:hover {
+    @apply bg-green-500;
+  }
 
-    .btn-danger {
-        @apply
-        bg-red-500
-        text-white
-    }
-
-    .btn-danger:hover {
-        @apply bg-red-600;
-    }
-
-    .btn-yellow {
-        @apply bg-yellow-500
+  .btn-danger {
+    @apply bg-red-500
         text-white;
-    }
+  }
 
-    .btn-yellow:hover {
-        @apply bg-yellow-600;
-    }
+  .btn-danger:hover {
+    @apply bg-red-600;
+  }
 
-    .btn-secondary {
-        @apply bg-gray-400
+  .btn-yellow {
+    @apply bg-yellow-500
         text-white;
-    }
+  }
 
-    .btn-secondary:hover {
-        @apply bg-gray-500;
-    }
+  .btn-yellow:hover {
+    @apply bg-yellow-600;
+  }
 
-    .btn-secondary:hover [class*='fill'] {
-        @apply
-        fill-gray-800
-    }
-
-    .btn-dark {
-        @apply bg-gray-800
+  .btn-secondary {
+    @apply bg-gray-400
         text-white;
-    }
+  }
 
-    .btn-dark:hover {
-        @apply bg-gray-700;
-    }
+  .btn-secondary:hover {
+    @apply bg-gray-500;
+  }
 
-    .btn-info {
-        @apply bg-blue-400
+  .btn-secondary:hover [class*="fill"] {
+    @apply fill-gray-800;
+  }
+
+  .btn-dark {
+    @apply bg-gray-800
         text-white;
-    }
+  }
 
-    .btn-info:hover {
-        @apply bg-blue-500;
-    }
+  .btn-dark:hover {
+    @apply bg-gray-700;
+  }
 
-    /*=================================*/
-    /* =======Button Outlines=========*/
-    .outline {
-        @apply
-        bg-transparent
+  .btn-info {
+    @apply bg-blue-400
+        text-white;
+  }
+
+  .btn-info:hover {
+    @apply bg-blue-500;
+  }
+
+  /*=================================*/
+  /* =======Button Outlines=========*/
+  .outline {
+    @apply bg-transparent
         outline-1
         outline-gray-300
         text-gray-600
         transition-all
-        ease-linear
-    }
+        ease-linear;
+  }
 
-    .outline:hover {
-        @apply
-        bg-gray-100
-        bg-opacity-50
-    }
+  .outline:hover {
+    @apply bg-gray-100
+        bg-opacity-50;
+  }
 
-    .btn-outline-primary:hover [class*='fill'],
-    .btn-outline-yellow:hover [class*='fill'],
-    .btn-outline-info:hover [class*='fill'],
-    .btn-outline-danger:hover [class*='fill'] {
-        @apply
-        fill-white
-    }
+  .btn-outline-primary:hover [class*="fill"],
+  .btn-outline-yellow:hover [class*="fill"],
+  .btn-outline-info:hover [class*="fill"],
+  .btn-outline-danger:hover [class*="fill"] {
+    @apply fill-white;
+  }
 
-    .btn-outline-primary {
-        @apply
-        outline-gray-500
-        text-primary-600
-    }
+  .btn-outline-primary {
+    @apply outline-gray-500
+        text-primary-600;
+  }
 
-    .btn-outline-primary:hover {
-        @apply
-        bg-primary-25
-        text-white
-    }
+  .btn-outline-primary:hover {
+    @apply bg-primary-25
+        text-white;
+  }
 
-    .btn-outline-info {
-        @apply
-        outline-blue-500
-        text-blue-500
-    }
+  .btn-outline-info {
+    @apply outline-blue-500
+        text-blue-500;
+  }
 
-    .btn-outline-info:hover {
-        @apply
-        bg-blue-500
-        text-white
-    }
+  .btn-outline-info:hover {
+    @apply bg-blue-500
+        text-white;
+  }
 
-    .btn-outline-danger {
-        @apply
-        text-error-500
-        outline-error-500
-    }
+  .btn-outline-danger {
+    @apply text-error-500
+        outline-error-500;
+  }
 
-    .btn-outline-danger:hover {
-        @apply
-        bg-red-500
-        text-white
-    }
+  .btn-outline-danger:hover {
+    @apply bg-red-500
+        text-white;
+  }
 
-    .btn-outline-yellow {
-        @apply
-        outline-yellow-500
-        text-yellow-500
-    }
+  .btn-outline-yellow {
+    @apply outline-yellow-500
+        text-yellow-500;
+  }
 
+  .btn-outline-yellow:hover {
+    @apply bg-yellow-500
+        text-white;
+  }
 
-    .btn-outline-yellow:hover {
-        @apply
-        bg-yellow-500
-        text-white
-    }
-
-    /*================================*/
-    /*=========Alert===========*/
-    .alert {
-        @apply
-        p-3.5
+  /*================================*/
+  /*=========Alert===========*/
+  .alert {
+    @apply p-3.5
         px-4
         rounded-md
         border
         transition-all
-        transition-all
-    }
+        transition-all;
+  }
 
-    .alert-label {
-        @apply
-        font-bold
-    }
+  .alert-label {
+    @apply font-bold;
+  }
 
-    .alert.alert-success {
-        @apply
-        bg-secondary-mid
+  .alert.alert-success {
+    @apply bg-secondary-mid
         text-green-800
-        border-green-400
-    }
+        border-green-400;
+  }
 
-    .alert.alert-light {
-        @apply
-        bg-gray-100
-        border-gray-300
-    }
+  .alert.alert-light {
+    @apply bg-gray-100
+        border-gray-300;
+  }
 
-    .alert.alert-dark {
-        @apply
-        bg-gray-700
+  .alert.alert-dark {
+    @apply bg-gray-700
         text-gray-200
-        border-gray-800
-    }
+        border-gray-800;
+  }
 
-    .alert.alert-danger {
-        @apply
-        bg-red-200
+  .alert.alert-danger {
+    @apply bg-red-200
         text-red-600
-        border-red-400
-    }
+        border-red-400;
+  }
 
-    .alert.alert-yellow {
-        @apply
-        bg-yellow-100
+  .alert.alert-yellow {
+    @apply bg-yellow-100
         text-yellow-500
-        border-yellow-400
-    }
+        border-yellow-400;
+  }
 
-    .alert.alert-info {
-        @apply
-        bg-blue-200
+  .alert.alert-info {
+    @apply bg-blue-200
         text-blue-500
-        border-blue-400
-    }
+        border-blue-400;
+  }
 
-    /*========================*/
-    input[type=checkbox]:after,
-    input[type=radio]:after {
-        content: "";
-        display: block;
-        left: 0;
-        top: 0;
-        position: absolute;
-        transition: transform var(--d-t) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
-    }
+  /*========================*/
+  input[type="checkbox"]:after,
+  input[type="radio"]:after {
+    content: "";
+    display: block;
+    left: 0;
+    top: 0;
+    position: absolute;
+    transition: transform var(--d-t) var(--d-t-e, ease),
+      opacity var(--d-o, 0.2s);
+  }
 
-    input[type=checkbox]:checked,
-    input[type=radio]:checked {
-        --b: var(--checked-color);
-        --disabled-check-color: var(--checked-color);
-        --d-o: .3s;
-        --d-t: .6s;
-        --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
-    }
+  input[type="checkbox"]:checked,
+  input[type="radio"]:checked {
+    --b: var(--checked-color);
+    --disabled-check-color: var(--checked-color);
+    --d-o: 0.3s;
+    --d-t: 0.6s;
+    --d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
+  }
 
-    input[type=checkbox]:disabled,
-    input[type=radio]:disabled {
-        --b: var(--disabled);
-        cursor: not-allowed;
-        opacity: 0.9;
-    }
+  input[type="checkbox"]:disabled,
+  input[type="radio"]:disabled {
+    --b: var(--disabled);
+    cursor: not-allowed;
+    opacity: 0.9;
+  }
 
-    input[type=checkbox]:disabled:checked,
-    input[type=radio]:disabled:checked {
-        --b: var(--disabled-inner);
-        --disabled-check-color: var(--border-color);
-    }
+  input[type="checkbox"]:disabled:checked,
+  input[type="radio"]:disabled:checked {
+    --b: var(--disabled-inner);
+    --disabled-check-color: var(--border-color);
+  }
 
-    input[type=checkbox]:disabled + label,
-    input[type=radio]:disabled + label {
-        cursor: not-allowed;
-    }
+  input[type="checkbox"]:disabled + label,
+  input[type="radio"]:disabled + label {
+    cursor: not-allowed;
+  }
 
-    input[type=checkbox]:hover:not(:checked):not(:disabled),
-    input[type=radio]:hover:not(:checked):not(:disabled) {
-        --disabled-check-color: var(--border-hover-color);
-    }
+  input[type="checkbox"]:hover:not(:checked):not(:disabled),
+  input[type="radio"]:hover:not(:checked):not(:disabled) {
+    --disabled-check-color: var(--border-hover-color);
+  }
 
-    input[type=checkbox],
-    input[type=radio] {
-        width: 21px;
-    }
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 21px;
+  }
 
-    input[type=checkbox]:after,
-    input[type=radio]:after {
-        opacity: var(--checked, 0);
-    }
+  input[type="checkbox"]:after,
+  input[type="radio"]:after {
+    opacity: var(--checked, 0);
+  }
 
-    input[type=checkbox]:checked,
-    input[type=radio]:checked {
-        --checked: 1;
-    }
+  input[type="checkbox"]:checked,
+  input[type="radio"]:checked {
+    --checked: 1;
+  }
 
-    input[type=checkbox] + label,
-    input[type=radio] + label {
-        font-size: 14px;
-        line-height: 21px;
-        display: inline-block;
-        vertical-align: top;
-        cursor: pointer;
-        margin-left: 4px;
-    }
+  input[type="checkbox"] + label,
+  input[type="radio"] + label {
+    font-size: 14px;
+    line-height: 21px;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    margin-left: 4px;
+  }
 
-    input[type=checkbox]:after {
-        width: 5px;
-        height: 9px;
-        border: 2px solid var(--checked-color-inner);
-        border-top: 0;
-        border-left: 0;
-        left: 7px;
-        top: 4px;
-        transform: rotate(var(--r, 20deg));
-    }
+  input[type="checkbox"]:after {
+    width: 5px;
+    height: 9px;
+    border: 2px solid var(--checked-color-inner);
+    border-top: 0;
+    border-left: 0;
+    left: 7px;
+    top: 4px;
+    transform: rotate(var(--r, 20deg));
+  }
 
-    input[type=checkbox]:checked {
-        --r: 43deg;
-    }
+  input[type="checkbox"]:checked {
+    --r: 43deg;
+  }
 
-    input[type=radio] {
-        border-radius: 50%;
-    }
+  input[type="radio"] {
+    border-radius: 50%;
+  }
 
-    input[type=radio]:after {
-        width: 19px;
-        height: 19px;
-        border-radius: 50%;
-        background: var(--checked-color-inner);
-        opacity: 1;
-        transform: scale(var(--s, 0.7));
-    }
+  input[type="radio"]:after {
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: var(--checked-color-inner);
+    opacity: 1;
+    transform: scale(var(--s, 0.7));
+  }
 
-    input[type=radio]:checked {
-        --s: .5;
-    }
+  input[type="radio"]:checked {
+    --s: 0.5;
+  }
 
-    .v-enter-active,
-    .v-leave-active {
-        transition: opacity 300ms ease;
-    }
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 300ms ease;
+  }
 
-    .v-enter-from,
-    .v-leave-to {
-        opacity: 0;
-    }
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
 
-    .overlay {
-        background-color: rgba(0, 0, 0, 0.6);
-        @apply
-        backdrop-blur-sm
-        w-full
-    }
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    @apply backdrop-blur-sm
+        w-full;
+  }
+
+  section {
+    @apply flex justify-center items-center flex-col w-[90%]  max-w-sm p-4 gap-8;
+  }
+
+  section p {
+    @apply text-center text-lg text-secondary-darkGray;
+  }
+
+  section h1 {
+    @apply text-4xl font-bold;
+  }
+
+  section form {
+    @apply flex flex-col gap-8  w-full;
+  }
+
+  section form div {
+    @apply flex flex-col gap-4 text-secondary-darkGray;
+  }
+
+  section form div input {
+    @apply border border-secondary-darkGray bg-transparent h-12 w-full rounded-md px-5;
+  }
+
+  section form div input:focus {
+    @apply outline-none;
+  }
+
+  section form button {
+    @apply bg-secondary-mid py-3 rounded-md font-bold text-sm;
+  }
 }

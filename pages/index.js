@@ -1,15 +1,13 @@
 import Link from "next/link";
+import SignUp from "../components/signup/SignUp";
 
 import { useSession } from "next-auth/react";
 
 const Home = () => {
   return (
-    <div className="">
-      <h1>
-        User registers first. After registration, they are redirected
-        <Link href="/onboarding">to the onboarding screen</Link>
-      </h1>
-    </div>
+    <main className="min-h-full flex justify-center items-center">
+      <SignUp />
+    </main>
   );
 };
 
