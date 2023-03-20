@@ -31,6 +31,9 @@ export default async function handler(req, res) {
         { _id: quiz._id },
         {
           $push: { questionsAttempted: question._id },
+          nextQuestionEndIn: question.image
+            ? Date.now() + 1000 * 65
+            : Date.now() + 1000 * 35,
         }
       );
 

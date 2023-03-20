@@ -1,6 +1,7 @@
 import Question from "../../../backend/models/questionModel";
 import Quiz from "../../../backend/models/quizModel";
 import getSession from "../../../backend/getSession";
+// import differenceInMilliseconds from "date-fns/differenceInMilliseconds";
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
@@ -18,13 +19,12 @@ const handler = async (req, res) => {
         return res.status(404).json({ error: "Question not found!" });
 
       // update score if answer is correct or wrong
-
       if (question.answer === answer) {
         await Quiz.findOneAndUpdate(
           { _id: quizId },
           {
             $inc: {
-              totalCorrect: 1,
+              totalCorrect: question.nextQuestionEndsIn < Date.now() ? 0 : 1,
               questionsAttempted: 1,
             },
           }
