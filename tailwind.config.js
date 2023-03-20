@@ -15,6 +15,7 @@ module.exports = {
         },
         secondary: {
           mid: "#06BA6B",
+          darkGray: "#a6a6a6",
         },
       },
     },
