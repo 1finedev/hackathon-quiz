@@ -1,95 +1,76 @@
+import getSession from "../backend/getSession";
 import React, { useMemo, useRef } from "react";
 import { useState, useEffect } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import Alert from "../components/Alert";
 import countryCode from "../components/countryCod.json";
+import { toast } from "react-toastify";
+
+export async function getServerSideProps({ req, res }) {
+  const session = await getSession(req, res);
+  if (session) {
+    return {
+      redirect: {
+        destination: "/onboarding",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      session,
+    },
+  };
+}
 
 const SignIn = () => {
   const router = useRouter();
-  const [fields, setFields] = useState({ number: 0, password: "" });
-  const [submitted, setSubmit] = useState(false);
-  const [selectedCode, setSelectedCode] = useState("");
+  const [values, setValues] = useState({ mobile: "", password: "" });
+  const [selectedCode, setSelectedCode] = useState("+234");
   const [showCodes, setShowCodes] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const codeInputs = useRef();
-  const [state, setState] = useState({
-    message: "",
-    type: "error",
-    active: false,
-  });
   const codes = useMemo(() => countryCode.countries, []);
-  const removeError = () => {
-    setTimeout(() => {
-      setState({ ...state, active: false });
-    }, 3000);
-  };
+  let timeout;
+
   const submitForm = async (e) => {
     e.preventDefault();
-    if (fields.password === "" || fields.number.toString().length < 11) {
-      setSubmit(true);
-      return null;
-    }
-    if (!selectedCode) {
-      setShowCodes(true);
-      setSubmit(true);
-      return null;
-    }
-    let number = fields.number.toString();
-    if (number[0] === "0") {
-      number = number.slice(1);
-    }
 
-    const response = await signIn("credentials", {
-      redirect: false,
-      mobile: `${selectedCode}${number}`,
-      password: fields.password,
-    });
-    if (!response.ok) {
-      setState({ ...state, message: response.error, active: true });
-      removeError();
+    // basic input validation
+
+    if (!values.mobile > 11) {
+      toast.error("Invalid phone number!");
       return;
     }
+    const response = await signIn("credentials", {
+      redirect: false,
+      mobile: `${selectedCode}${
+        values.mobile.startsWith("0")
+          ? values.mobile.replace("0", "")
+          : values.mobile
+      }`,
+      password: values.password,
+    });
 
-    setState({ type: "success", message: response.success, active: true });
-    await router.push("/dashboard");
-    setSubmit(false);
-  };
-  const watchField = (e) => {
-    return e === "password" && fields[e] === "" ? (
-      <p className="text-red-400 text-sm mt-2">
-        Sorry but your {e} is required{" "}
-      </p>
-    ) : (
-      e === "number" && fields[e].toString().length < 11 && (
-        <p className="text-red-400 text-sm mt-2">
-          Sorry but your {e} must be 11 digits
-        </p>
-      )
-    );
-  };
-  const insertNumber = (arg) => {
-    //Convert the values to number and limit the number the chars to 11, if pass, start all over
-    return /^[0-9]{0,12}$/.test(arg) ? arg : 0;
-  };
-  useEffect(() => {
-    let timeout;
-    if (submitted) {
-      watchField("number");
-      watchField("password");
+    if (response.error) {
+      toast.error(response.error);
+    } else {
+      toast.success("Login successful");
       timeout = setTimeout(() => {
-        setSubmit(false);
-      }, 3000);
+        router.push("/onboarding");
+      }, 1000);
     }
+  };
+
+  useEffect(() => {
     return () => {
       clearTimeout(timeout);
     };
-  }, [fields, submitted]);
+  }, [timeout]);
 
   return (
     <div className="relative p-3">
-      {/* <Alert status={state} isActive={state.active} /> */}
-
       <div className="text-center mt-20 mb-16">
         <h2 className="text-4xl mb-3">Login</h2>
         <p className="text-gray-600">
@@ -155,12 +136,12 @@ const SignIn = () => {
               <input
                 autoComplete={"off"}
                 onInput={(e) =>
-                  setFields({
-                    ...fields,
-                    number: insertNumber(e.target.value.trimStart()),
-                  })
+                  setValues((prev) => ({
+                    ...prev,
+                    mobile: e.target.value.trimStart(),
+                  }))
                 }
-                value={fields.number || ""}
+                value={values.mobile}
                 required
                 type="tel"
                 id="tel"
@@ -170,7 +151,6 @@ const SignIn = () => {
                 className="form-control bg-transparent flex-auto w-auto focus-within:outline-none focus-within:cursor-text"
               />
             </div>
-            {submitted && watchField("number")}
           </fieldset>
 
           <fieldset className="form-group relative block w-100 mb-4">
@@ -181,9 +161,13 @@ const SignIn = () => {
               <input
                 type={`${showPassword ? "text" : "password"}`}
                 onInput={(e) =>
-                  setFields({ ...fields, password: e.target.value.trimStart() })
+                  setValues((prev) => ({
+                    ...prev,
+                    password: e.target.value.trimStart(),
+                  }))
                 }
-                value={fields.password}
+                placeholder="Password"
+                value={values.password}
                 required
                 autoComplete={"off"}
                 id="password"
@@ -231,9 +215,7 @@ const SignIn = () => {
                 )}
               </div>
             </div>
-            {submitted && watchField("password")}
           </fieldset>
-
           <button className="btn btn-primary rounded block w-full mt-10">
             Login
           </button>

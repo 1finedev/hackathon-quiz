@@ -5,6 +5,8 @@ import { useSession, signIn } from "next-auth/react";
 import { useEffect } from "react";
 import { SessionProvider } from "next-auth/react";
 import Loading from "../components/Loading";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +21,18 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         ) : (
           <Component {...pageProps} />
         )}
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </Layout>
     </SessionProvider>
   );
