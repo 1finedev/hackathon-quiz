@@ -73,12 +73,16 @@ const SignIn = () => {
     return /^[0-9]{0,12}$/.test(arg) ? arg : 0;
   };
   useEffect(() => {
+    let timeout;
     if (submitted) {
       watchField("number");
       watchField("password");
-      setTimeout(() => {
+     timeout= setTimeout(() => {
         setSubmit(false);
       }, 3000);
+    }
+    return () => {
+      clearTimeout(timeout)
     }
   }, [fields, submitted]);
 
