@@ -14,7 +14,9 @@ const Header = ({ className }) => {
     <header className="fixed z-10 top-0 w-full shadow flex items-center justify-between bg-secondary-mid h-[60px] md:px-16 px-8 text-white">
       {/* Name */}
 
-      <Link href="/" className="text-xl font-semibold ">React Quizzer</Link>
+      <Link href="/" className="text-xl font-semibold ">
+        React Quizzer
+      </Link>
       {/* Nav */}
       <nav
         className={`absolute bg-secondary-mid ${
@@ -22,9 +24,15 @@ const Header = ({ className }) => {
         } w-full left-0 z-[1] p-8 duration-500 md:left-auto md:w-auto shadow md:shadow-none md:top-0 md:relative md:bg-transparent md:p-0 md:z-[0]`}
       >
         <ul className="flex gap-8 text-white font-semibold text-xl flex-col md:flex-row">
-          <li className="">Home</li>
-          <li className="">Quiz</li>
-          <li className="">Contact</li>
+          <Link href="/">
+            <li className="">Home</li>
+          </Link>
+          <Link href="/sign-in">
+            <li className="">Quiz</li>
+          </Link>
+          <Link href="https://chat.whatsapp.com/HlIjg2kPxIOAOyG1Sbcm9H">
+            <li className="">Contact</li>
+          </Link>
         </ul>
       </nav>
       {/* Hamburger */}
