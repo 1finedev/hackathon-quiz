@@ -25,12 +25,7 @@ const FirstStep = () => {
 						</li>
 					))}
 				</ul>
-				<div className="flex items-center gap-2 mt-4">
-					<input type="checkbox" className="" />
-					<label htmlFor="" className="">
-						I have read the instructions
-					</label>
-				</div>
+				
 			</div>
 		</div>
 	);
