@@ -343,7 +343,7 @@ body {
   }
 
   body {
-    @apply bg-[#101010]
+    @apply bg-[#101010];
   }
 
   section {
@@ -376,5 +376,8 @@ body {
 
   section form button {
     @apply bg-secondary-mid py-3 rounded-md font-bold text-sm;
+  }
+  .error {
+    @apply border border-red-700;
   }
 }
