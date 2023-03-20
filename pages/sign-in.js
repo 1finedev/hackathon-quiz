@@ -117,7 +117,7 @@ const SignIn = () => {
                 </span>
               </div>
               <ul
-                className={`bg-[#1e1e1e]  px-3 cursor-pointer flex flex-col gap-3 w-fit max-h-32 overflow-y-scroll absolute left-2 z-50 top-full ${
+                className={`bg-[#1e1e1e]  px-3 cursor-pointer flex flex-col gap-3 w-fit max-h-32 overflow-y-scroll absolute left-2 z-50 top-full outline-0 ${
                   showCodes ? "h-auto  py-3 " : "h-0"
                 } transition-all duration-300 ease-out`}
                 onBlur={() => {
