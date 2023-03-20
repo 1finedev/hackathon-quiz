@@ -1,14 +1,35 @@
 import mongoose from "mongoose";
 
-const quizSchema = new mongoose.Schema({
-  startTime: {
-    type: Date,
-    default: Date.now,
+const quizSchema = new mongoose.Schema(
+  {
+    startTime: {
+      type: Date,
+      default: Date.now,
+    },
+    questionsAttempted: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Questions",
+      },
+    ],
+    totalCorrect: {
+      type: Number,
+      default: 0,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
-  totalAttempted: {
-    type: Number,
-    default: 0,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 const Quiz = mongoose.models.Quiz || mongoose.model("Quiz", quizSchema);
+module.exports = Quiz;
