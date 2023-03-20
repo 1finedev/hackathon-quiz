@@ -21,4 +21,4 @@ const hackathonSchema = new mongoose.Schema(
 );
 mongoose.models = {};
 const Hackathon = mongoose.model("Hackathon", hackathonSchema);
-module.exports = Hackathon;
+export default Hackathon;
