@@ -2,11 +2,12 @@ import { setConfig } from "next/config";
 
 function SignUp() {
   return (
-    <section>
+    <section className="sign-up">
       <div className="text-center space-y-2">
         <h1>Get Started</h1>
         <p>
-          Sign up to get screened for the quiz to participate in the hackathon 4.0
+          Sign up to get screened for the quiz to participate in the hackathon
+          4.0
         </p>
       </div>
       <form>
