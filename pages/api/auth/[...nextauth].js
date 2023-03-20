@@ -127,6 +127,10 @@ export const authOptions = {
       },
     },
   },
+  pages: {
+    signIn: "/sign-in",
+    error: "/500",
+  },
   debug: false,
 };
 

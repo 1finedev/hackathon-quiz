@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const hackatonSchema = new mongoose.Schema(
+const hackathonSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -19,6 +19,6 @@ const hackatonSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
-const Hackaton = mongoose.models.Hackaton ||  mongoose.model("Hackaton", hackatonSchema);
-module.exports = Hackaton;
+mongoose.models = {};
+const Hackathon = mongoose.model("Hackathon", hackathonSchema);
+module.exports = Hackathon;
