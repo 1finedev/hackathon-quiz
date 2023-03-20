@@ -1,6 +1,9 @@
 import { setConfig } from "next/config";
+import { useState, useEffect } from "react";
 
 function SignUp() {
+  const [selectedCode, setSelectedCode] = useState("");
+  const [showCodes, setShowCodes] = useState(false);
   return (
     <section>
       <div className="text-center space-y-2">
