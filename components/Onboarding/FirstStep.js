@@ -10,7 +10,7 @@ const FirstStep = () => {
 	return (
 		<div className="w-[90%] mx-auto">
 			<div className="text-center">
-				<h1 className="text-[2rem] font-semibold p-8 bg-">Hackathon 3.0 🔥</h1>
+				<h1 className="text-[2rem] font-semibold">Hackathon 3.0 🔥</h1>
 				<p className="font-medium">
 					Welcome to the assessment for the hackathon of a lifetime. It&apos;s great that you got this far, your sweat
 					will turn to blood, your eyes will see shege but the good thing is that, you won&apos;t die.

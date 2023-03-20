@@ -342,8 +342,12 @@ body {
         w-full;
   }
 
+  body {
+    @apply bg-[#101010]
+  }
+
   section {
-    @apply flex justify-center items-center flex-col w-[90%]  max-w-sm p-4 gap-8;
+    @apply flex justify-center items-center mx-auto flex-col w-[90%] max-w-sm py-6 gap-6;
   }
 
   section p {
@@ -355,7 +359,7 @@ body {
   }
 
   section form {
-    @apply flex flex-col gap-8  w-full;
+    @apply flex flex-col gap-4  w-full;
   }
 
   section form div {

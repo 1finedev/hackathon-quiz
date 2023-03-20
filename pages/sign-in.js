@@ -49,45 +49,41 @@ const SignIn = () => {
       return;
     }
 
-    setState({ type: "success", message: response.success, active: true });
-    await router.push("/dashboard");
-    setSubmit(false);
-  };
-  const watchField = (e) => {
-    return e === "password" && fields[e] === "" ? (
-      <p className="text-red-400 text-sm mt-2">
-        Sorry but your {e} is required{" "}
-      </p>
-    ) : (
-      e === "number" && fields[e].toString().length < 11 && (
-        <p className="text-red-400 text-sm mt-2">
-          Sorry but your {e} must be 11 digits
-        </p>
-      )
-    );
-  };
-  const insertNumber = (arg) => {
-    //Convert the values to number and limit the number the chars to 11, if pass, start all over
-    return /^[0-9]{0,12}$/.test(arg) ? arg : 0;
-  };
-  useEffect(() => {
-    if (submitted) {
-      watchField("number");
-      watchField("password");
-      setTimeout(() => {
-        setSubmit(false);
-      }, 3000);
-    }
-  }, [fields, submitted]);
+		setState({ type: "success", message: response.success, active: true });
+		await router.push("/dashboard");
+		setSubmit(false);
+	};
+	const watchField = (e) => {
+		return e === "password" && fields[e] === "" ? (
+			<p className="text-red-400 text-sm mt-2">Sorry but your {e} is required </p>
+		) : (
+			e === "number" && fields[e].toString().length < 11 && (
+				<p className="text-red-400 text-sm mt-2">Sorry but your {e} must be 11 digits</p>
+			)
+		);
+	};
+	const insertNumber = (arg) => {
+		//Convert the values to number and limit the number the chars to 11, if pass, start all over
+		return /^[0-9]{0,12}$/.test(arg) ? arg : 0;
+	};
+	useEffect(() => {
+		if (submitted) {
+			watchField("number");
+			watchField("password");
+			setTimeout(() => {
+				setSubmit(false);
+			}, 3000);
+		}
+	}, [fields, submitted]);
 
-  return (
-    <div className="relative p-3">
-      <Alert status={state} isActive={state.active} />
+	return (
+		<div className="relative p-3">
+			<Alert status={state} isActive={state.active} />
 
-      <div className="text-center mt-20 mb-16">
-        <h2 className="text-4xl mb-3">Login</h2>
-        <p className="text-gray-600">Welcome back, let's get you started</p>
-      </div>
+			<div className="text-center mt-20 mb-16">
+				<h2 className="text-4xl mb-3">Login</h2>
+				<p className="text-gray-600">Welcome back, let&apos;s get you started</p>
+			</div>
 
       <div className="mx-auto my-10 min-h-[200px] rounded max-w-[400px]">
         <form onSubmit={submitForm} className="block p-2 relative w-100">
@@ -141,7 +137,7 @@ const SignIn = () => {
                     number: insertNumber(e.target.value.trimStart()),
                   })
                 }
-                value={fields.number || ''}
+                value={fields.number}
                 required
                 type="tel"
                 id="tel"
@@ -154,32 +150,28 @@ const SignIn = () => {
             {submitted && watchField("number")}
           </fieldset>
 
-          <fieldset className="form-group relative block w-100 mb-4">
-            <label htmlFor="password" className="text-sm">
-              Password
-            </label>
+					<fieldset className="form-group relative block w-100 mb-4">
+						<label htmlFor="password" className="text-sm">
+							Password
+						</label>
 
-            <input
-              type="password"
-              onInput={(e) =>
-                setFields({ ...fields, password: e.target.value.trimStart() })
-              }
-              value={fields.password}
-              required
-              autoComplete={"off"}
-              id="password"
-              className="form-control mt-2 block border bg-transparent outline-0 border-gray-500 h-[40px] rounded px-3 w-full"
-            />
-            {submitted && watchField("password")}
-          </fieldset>
+						<input
+							type="password"
+							onInput={(e) => setFields({ ...fields, password: e.target.value.trimStart() })}
+							value={fields.password}
+							required
+							autoComplete={"off"}
+							id="password"
+							className="form-control mt-2 block border bg-transparent outline-0 border-gray-500 h-[40px] rounded px-3 w-full"
+						/>
+						{submitted && watchField("password")}
+					</fieldset>
 
-          <button className="btn btn-primary rounded block w-full mt-10">
-            Login
-          </button>
-        </form>
-      </div>
-    </div>
-  );
+					<button className="btn btn-primary rounded block w-full mt-10">Login</button>
+				</form>
+			</div>
+		</div>
+	);
 };
 
 export default SignIn;

@@ -3,10 +3,12 @@ import { setConfig } from "next/config";
 function SignUp() {
   return (
     <section>
-      <h1>Get Started</h1>
-      <p>
-        Sign up to get screened for the quiz to participate in the hackathon 4.0
-      </p>
+      <div className="text-center space-y-2">
+        <h1>Get Started</h1>
+        <p>
+          Sign up to get screened for the quiz to participate in the hackathon 4.0
+        </p>
+      </div>
       <form>
         <div>
           <label>WhatsApp Name</label>
@@ -24,7 +26,7 @@ function SignUp() {
           <label>Confirm Password</label>
           <input type="password" placeholder="......" required />
         </div>
-        <button>Register</button>
+        <button className="mt-6">Register</button>
       </form>
     </section>
   );
