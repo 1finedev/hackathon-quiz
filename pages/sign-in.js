@@ -94,7 +94,7 @@ const SignIn = () => {
             </label>
             <div className="flex cursor-pointer mt-2  border bg-transparent outline-0 relative border-gray-500 py-1 max-w-full rounded pl-3 gap-2">
               <div
-                className="flex items-center focus:border focusborder-black focus:border-solid my-2 w-fit"
+                className="flex items-center focus:border focus:border-black focus:border-solid my-2 w-fit"
                 onClick={() => {
                   setShowCodes((prev) => !prev);
                   codeInputs.current.focus()
