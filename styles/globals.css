@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    @apply
+    bg-primary-100
+    text-white
+    overflow-x-hidden
+}
 
 .list-circle {
     list-style: circle;
@@ -46,7 +52,7 @@
 
     .btn-primary:hover [class*='fill'],
     .btn-danger:hover [class*='fill'],
-    .btn-warning:hover [class*='fill'] {
+    .btn-yellow:hover [class*='fill'] {
         @apply
         fill-white
     }
@@ -72,12 +78,12 @@
         @apply bg-red-600;
     }
 
-    .btn-warning {
+    .btn-yellow {
         @apply bg-yellow-500
         text-white;
     }
 
-    .btn-warning:hover {
+    .btn-yellow:hover {
         @apply bg-yellow-600;
     }
 
@@ -114,7 +120,6 @@
     }
 
     /*=================================*/
-
     /* =======Button Outlines=========*/
     .outline {
         @apply
@@ -133,7 +138,7 @@
     }
 
     .btn-outline-primary:hover [class*='fill'],
-    .btn-outline-warning:hover [class*='fill'],
+    .btn-outline-yellow:hover [class*='fill'],
     .btn-outline-info:hover [class*='fill'],
     .btn-outline-danger:hover [class*='fill'] {
         @apply
@@ -176,21 +181,20 @@
         text-white
     }
 
-    .btn-outline-warning {
+    .btn-outline-yellow {
         @apply
         outline-yellow-500
         text-yellow-500
     }
 
 
-    .btn-outline-warning:hover {
+    .btn-outline-yellow:hover {
         @apply
         bg-yellow-500
         text-white
     }
 
     /*================================*/
-
     /*=========Alert===========*/
     .alert {
         @apply
@@ -201,16 +205,17 @@
         transition-all
         transition-all
     }
-    .alert-label{
+
+    .alert-label {
         @apply
         font-bold
     }
 
     .alert.alert-success {
         @apply
-        bg-success-100
-        text-success-800
-        border-success-400
+        bg-secondary-mid
+        text-green-800
+        border-green-400
     }
 
     .alert.alert-light {
@@ -229,15 +234,15 @@
     .alert.alert-danger {
         @apply
         bg-red-200
-        text-error-600
-        border-error-400
+        text-red-600
+        border-red-400
     }
 
-    .alert.alert-warning {
+    .alert.alert-yellow {
         @apply
         bg-yellow-100
-        text-warning-500
-        border-warning-400
+        text-yellow-500
+        border-yellow-400
     }
 
     .alert.alert-info {
@@ -248,7 +253,6 @@
     }
 
     /*========================*/
-
     input[type=checkbox]:after,
     input[type=radio]:after {
         content: "";
@@ -358,8 +362,8 @@
         opacity: 0;
     }
 
-    .overlay{
-        background-color: rgba(0,0,0,0.6);
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.6);
         @apply
         backdrop-blur-sm
         w-full

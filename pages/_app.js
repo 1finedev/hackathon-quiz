@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-import "../public/assets/main.css";
 import { Manrope } from "next/font/google";
 import Layout from "../components/Layout/Layout";
 import { useSession, signIn } from "next-auth/react";
