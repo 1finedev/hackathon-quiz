@@ -1,6 +1,7 @@
 import Question from "../../../backend/models/questionModel";
 import Quiz from "../../../backend/models/quizModel";
 import getSession from "../../../backend/getSession";
+import connectToDb from "../../../backend/connectToDb";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -15,10 +16,17 @@ export default async function handler(req, res) {
 
     try {
       const quiz = await Quiz.findOneById(quizId);
-      if (!attempted) return res.status(404).json({ error: "Quiz not found!" });
+      if (!quiz) return res.status(404).json({ error: "Quiz not found!" });
 
+      if (quiz.questionsAttempted.length === 20) {
+        return res.status(400).json({
+          status: "error",
+          message: "Quiz already completed!",
+          score: quiz.totalCorrect,
+        });
+      }
       const question = await Question.findOne({
-        $nin: [quiz.map((quiz) => [quiz.questionsAttempted])],
+        _id: { $nin: [quiz.questionsAttempted] },
       }).catch((err) => {
         console.log(err);
         return res.status(500).json({ error: "Internal Server Error" });
@@ -31,9 +39,7 @@ export default async function handler(req, res) {
         { _id: quiz._id },
         {
           $push: { questionsAttempted: question._id },
-          nextQuestionEndIn: question.image
-            ? Date.now() + 1000 * 65
-            : Date.now() + 1000 * 35,
+          nextQuestionEndIn: Date.now() + 1000 * 65,
         }
       );
 
