@@ -50,7 +50,7 @@ function SignUp() {
     setLoading(false);
   };
   return (
-    <section>
+    <section className="sign-up">
       <div className="text-center space-y-2">
         <h1>Get Started</h1>
         <p>
