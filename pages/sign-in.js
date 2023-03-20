@@ -24,7 +24,7 @@ const SignIn = () => {
 
         const response = await signIn("credentials", {
             redirect: false,
-            mobile: fields.mobile,
+            mobile: fields.number,
             password: fields.password,
         });
         if (!response.ok) {
