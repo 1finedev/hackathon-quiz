@@ -8,8 +8,9 @@ const Layout = ({ children, className }) => {
 	return (
 		<>
 			{pathname === "/sign-up" || pathname === "/sign-in" ? null : <Header className={className} />}
-			<main className={`${className} text-white pt-[3rem]`}>{children} </main>
-			<Footer className={className} />
+			<main className={`${className} text-white pt-[3rem] h-[100vh] flex justify-center items-center`}>{children} </main>
+			{pathname === "/sign-up" || pathname === "/sign-in" ? null : <Footer className={className} />}
+			
 		</>
 	);
 };

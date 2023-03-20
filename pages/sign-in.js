@@ -93,7 +93,7 @@ const SignIn = () => {
             </label>
             <div className="flex cursor-pointer gap-4 mt-2  border bg-transparent outline-0 relative border-gray-500 h-[40px] rounded pl-3 w-full">
               <div
-                className="flex items-center focus:border focusborder-black focus:border-solid my-2 "
+                className="flex items-center focus:border focus:border-black focus:border-solid my-2 "
                 onClick={() => {
                   setShowCodes((prev) => !prev);
                 }}
