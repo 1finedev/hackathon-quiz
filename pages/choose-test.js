@@ -41,7 +41,7 @@ function ChooseTest() {
             key={eachType.type}
             text={eachType.text}
             onClick={() => setQuizType(eachType.type)}
-            choosen={quizType === eachType.type}
+            selected={quizType === eachType.type}
           />
         ))}
       </section>
