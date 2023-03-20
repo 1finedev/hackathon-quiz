@@ -11,6 +11,7 @@ const SignIn = () => {
   const [submitted, setSubmit] = useState(false);
   const [selectedCode, setSelectedCode] = useState("");
   const [showCodes, setShowCodes] = useState(false);
+  const codeInputs = useRef();
   const [state, setState] = useState({
     message: "",
     type: "error",
@@ -37,7 +38,7 @@ const SignIn = () => {
   if(number[0] === '0'){
     number= number.slice(1)
   }
-  console.log(`${selectedCode}${number}`)
+
     const response = await signIn("credentials", {
       redirect: false,
       mobile: `${selectedCode}${number}`,
@@ -78,7 +79,7 @@ const SignIn = () => {
 
 	return (
 		<div className="relative p-3">
-			<Alert status={state} isActive={state.active} />
+			{/* <Alert status={state} isActive={state.active} /> */}
 
 			<div className="text-center mt-20 mb-16">
 				<h2 className="text-4xl mb-3">Login</h2>
@@ -86,35 +87,33 @@ const SignIn = () => {
 			</div>
 
       <div className="mx-auto my-10 min-h-[200px] rounded max-w-[400px]">
-        <form onSubmit={submitForm} className="block p-2 relative w-100">
-          <fieldset className="form-group relative block w-100 mb-5">
+        <form onSubmit={submitForm} className="flex flex-col gap-3 p-2 relative w-100">
+          <fieldset className="form-group relative block w-full mb-5">
             <label htmlFor="name" className="text-sm">
               Whatsapp Number
             </label>
-            <div className="flex cursor-pointer gap-4 mt-2  border bg-transparent outline-0 relative border-gray-500 h-[40px] rounded pl-3 w-full">
+            <div className="flex cursor-pointer mt-2  border bg-transparent outline-0 relative border-gray-500 py-1 max-w-full rounded pl-3 gap-2">
               <div
-                className="flex items-center focus:border focus:border-black focus:border-solid my-2 "
+                className="flex items-center focus:border focus:border-black focus:border-solid my-2 w-fit"
                 onClick={() => {
                   setShowCodes((prev) => !prev);
+                  codeInputs.current.focus()
                 }}
               >
-                {!selectedCode && (
-                  <span className="opacity-70">Country code</span>
-                )}
-                <input
-                  type="text"
-                  name="code"
-                  value={selectedCode}
-                  readOnly
-                  className={`bg-transparent max-w-[70px] flex-grow-0 ${
-                    !selectedCode ? "hidden" : "block"
-                  }`}
-                />
+                 
+                  <span className={`${!selectedCode && 'opacity-70'} text-sm md:text-lg whitespace-nowrap max-w-full`}>{selectedCode || '+234'}</span>
+                
+                
               </div>
               <ul
                 className={`bg-[#1e1e1e]  px-3 cursor-pointer flex flex-col gap-3 w-fit max-h-32 overflow-y-scroll absolute left-2 z-50 top-full ${
                   showCodes ? "h-auto  py-3 " : "h-0"
                 } transition-all duration-300 ease-out`}
+                onBlur={() => {
+                  setShowCodes(false)
+                }}
+                ref={codeInputs}
+                tabIndex={4}
               >
                 {codes.map((cod) => (
                   <li
@@ -137,14 +136,14 @@ const SignIn = () => {
                     number: insertNumber(e.target.value.trimStart()),
                   })
                 }
-                value={fields.number}
+                value={fields.number || ''}
                 required
                 type="tel"
                 id="tel"
                 name="tel"
                 maxLength={11}
                 placeholder="Whatsapp number"
-                className="form-control flex-1 bg-transparent"
+                className="form-control bg-transparent flex-auto w-auto"
               />
             </div>
             {submitted && watchField("number")}
