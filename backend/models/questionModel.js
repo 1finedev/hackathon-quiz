@@ -6,6 +6,9 @@ const questionSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+    },
     options: {
       type: Array,
       default: [],
@@ -23,7 +26,6 @@ const questionSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
-const Questions =
-  mongoose.models.Questions || mongoose.model("Questions", questionSchema);
-export default Questions;
+mongoose.models = {};
+const Question = mongoose.model("Questions", questionSchema);
+export default Question;

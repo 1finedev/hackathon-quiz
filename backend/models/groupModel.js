@@ -15,6 +15,6 @@ const groupSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
-const Group = mongoose.models.Group || mongoose.model("Group", groupSchema);
+mongoose.models = {};
+const Group = mongoose.model("Group", groupSchema);
 module.exports = Group;
