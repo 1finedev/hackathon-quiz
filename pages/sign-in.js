@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useMemo, useRef } from "react";
 import {useState, useEffect} from "react";
 import {signIn} from "next-auth/react";
 import {useRouter} from "next/router";
 import Alert from "../components/Alert";
+import countryCode from '../components/countryCod.json'
 
 const SignIn = () => {
     const router = useRouter();
     const [fields, setFields] = useState({number: 0, password: ""});
     const [submitted, setSubmit] = useState(false);
+    const [selectedCode, setSelectedCode] = useState('')
+    const [showCodes, setShowCodes] = useState(false)
     const [state, setState] = useState({message: '', type: 'error', active: false});
-
+    const codes = useMemo(() => countryCode.countries,[]);
     const removeError = () => {
         setTimeout(() => {
             setState({...state, active: false})
@@ -21,10 +24,15 @@ const SignIn = () => {
             setSubmit(true);
             return null;
         }
+        if(!selectedCode){
+           setShowCodes(true)
+            setSubmit(true);
+            return null
+        }
 
         const response = await signIn("credentials", {
             redirect: false,
-            mobile: fields.number,
+            mobile: `${selectedCode} ${fields.number}`,
             password: fields.password,
         });
         if (!response.ok) {
@@ -74,7 +82,20 @@ const SignIn = () => {
                         <label htmlFor="name" className="text-sm">
                             Whatsapp Number
                         </label>
-
+                        <div className="flex cursor-pointer gap-4 mt-2  border bg-transparent outline-0 relative border-gray-500 h-[40px] rounded pl-3 w-full">
+                        <div className="flex items-center focus:border focusborder-black focus:border-solid my-2 "onClick={() => {
+                            setShowCodes(prev => !prev)
+                        }}>
+                         {!selectedCode &&<span className="opacity-70">Country code</span> }
+                         <input type='text' name='code' value={selectedCode} readOnly className={`bg-transparent max-w-[70px] flex-grow-0 ${!selectedCode ? 'hidden' : 'block'}`}   />
+                        </div>
+                         <ul className={`bg-[#1e1e1e]  px-3 cursor-pointer flex flex-col gap-3 w-fit max-h-32 overflow-y-scroll absolute left-2 z-50 top-full ${showCodes ? 'h-auto  py-3 ' : 'h-0'} transition-all duration-300 ease-out`}>
+                            
+                            {codes.map((cod) => <li key={cod.name} value={cod.code} onClick={() =>{
+                                setSelectedCode(cod.code)
+                                setShowCodes(false)
+                            }}>{cod.name} {cod.code}</li>)}
+                         </ul>
                         <input
                             autoComplete={'off'}
                             onInput={(e) => setFields({...fields, number: insertNumber(e.target.value.trimStart())})}
@@ -85,8 +106,9 @@ const SignIn = () => {
                             name="tel"
                             maxLength={11}
                             placeholder="Whatsapp number"
-                            className="form-control mt-2 block border bg-transparent outline-0 border-gray-500 h-[40px] rounded px-3 w-full"
-                        />
+                            className="form-control flex-1 bg-transparent"
+                            />
+                            </div>
                         {submitted && watchField("number")}
                     </fieldset>
 
