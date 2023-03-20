@@ -1,18 +1,11 @@
-
 import HomeScreen from "../components/Homepage/HomeScreen";
-import Success from "../components/Success/Success";
-
-
-
+import { useSession } from "next-auth/react";
 
 const Home = () => {
-  return (
-    <>
-   <HomeScreen />
-    </>
-  );
+  return <HomeScreen />;
 };
 
 export default Home;
 
-
+//  to protect this page from unauthorized access
+Home.auth = true;
