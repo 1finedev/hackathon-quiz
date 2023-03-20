@@ -8,6 +8,11 @@ body {
     overflow-x-hidden;
 }
 
+body,
+html {
+  height: 100%;
+}
+
 .list-circle {
   list-style: circle;
 }
@@ -363,7 +368,7 @@ body {
   }
 
   section form div input {
-    @apply border border-secondary-darkGray bg-transparent h-12 w-full rounded-md px-5;
+    @apply border border-secondary-darkGray text-white bg-transparent h-12 w-full rounded-md px-5;
   }
 
   section form div input:focus {
