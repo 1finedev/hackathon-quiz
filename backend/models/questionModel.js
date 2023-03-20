@@ -23,7 +23,6 @@ const questionSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
-const Questions =
-  mongoose.models.Questions || mongoose.model("Questions", questionSchema);
-export default Questions;
+mongoose.models = {};
+const Question = mongoose.model("Questions", questionSchema);
+export default Question;

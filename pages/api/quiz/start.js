@@ -17,9 +17,18 @@ const handler = async (req, res) => {
 
     if (!user) return res.status(404).json({ error: "User not found!" });
 
-    const quiz = await Quiz.create({
+    Quiz.create({
       user: userId,
-    });
+    })
+      .then(() => {
+        return res
+          .status(201)
+          .json({ status: "success", message: "Quiz started successfully" });
+      })
+      .catch((err) => {
+        console.log(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+      });
   }
 };
 
