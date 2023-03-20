@@ -1,8 +1,10 @@
 import Questions from "../../../backend/models/questionModel";
 import getSession from "../../../backend/getSession";
+import { connectToDb } from "../../../backend/connectToDb";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
+    await connectToDb();
     const session = await getSession(req, res);
     if (!session)
       return res.status(401).json({ message: "Unauthorized", status: "error" });

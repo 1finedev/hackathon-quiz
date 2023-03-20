@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = ({ className }) => {
   return (
-    <footer className=" bg-secondary-mid font-semibold ">
+    <footer className="bg-secondary-mid font-semibold">
       <div class="container mx-auto py-4 px-5 grid grid-cols-1 ">
         <ul class="text-lg text-center mb-5 gap-3 text-white self-center justify-self-center list-none">
           <li class="my-2">

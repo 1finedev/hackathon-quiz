@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 
 const Layout = ({ children, className }) => {
+
 	return (
 		<>
 			<Header className={className} />
@@ -10,6 +11,7 @@ const Layout = ({ children, className }) => {
 			<Footer className={className} />
 		</>
 	);
+
 };
 
 export default Layout;
