@@ -87,7 +87,7 @@ const SignIn = () => {
 			</div>
 
       <div className="mx-auto my-10 min-h-[200px] rounded max-w-[400px]">
-        <form onSubmit={submitForm} className="flex flex-col gap-3 p-2 relative w-100">
+        <form onSubmit={submitForm} className="flex flex-col gap-3 p-2 relative w-100" autoComplete="off">
           <fieldset className="form-group relative block w-full mb-5">
             <label htmlFor="name" className="text-sm">
               Whatsapp Number
