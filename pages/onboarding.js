@@ -1,8 +1,10 @@
 import React from "react";
 import Onboarding from "../components/Onboarding/Onboarding";
 
-const onboarding = () => {
-	return <Onboarding />;
+const Onboard = () => {
+  return <Onboarding />;
 };
 
-export default onboarding;
+export default Onboard;
+
+Onboard.auth = true;

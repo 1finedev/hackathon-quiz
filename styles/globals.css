@@ -343,7 +343,7 @@ body {
   }
 
   body {
-    @apply bg-[#101010]
+    @apply bg-[#101010];
   }
 
   section {
