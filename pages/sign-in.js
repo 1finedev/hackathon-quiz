@@ -37,7 +37,7 @@ const SignIn = () => {
   if(number[0] === '0'){
     number= number.slice(1)
   }
-  console.log(`${selectedCode}${number}`)
+
     const response = await signIn("credentials", {
       redirect: false,
       mobile: `${selectedCode}${number}`,
