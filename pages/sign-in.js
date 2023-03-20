@@ -33,10 +33,14 @@ const SignIn = () => {
       setSubmit(true);
       return null;
     }
-
+  let number = fields.number.toString();
+  if(number[0] === '0'){
+    number= number.slice(1)
+  }
+  console.log(`${selectedCode}${number}`)
     const response = await signIn("credentials", {
       redirect: false,
-      mobile: `${selectedCode} ${fields.number}`,
+      mobile: `${selectedCode}${number}`,
       password: fields.password,
     });
     if (!response.ok) {
@@ -137,7 +141,7 @@ const SignIn = () => {
                     number: insertNumber(e.target.value.trimStart()),
                   })
                 }
-                value={fields.number}
+                value={fields.number || ''}
                 required
                 type="tel"
                 id="tel"
