@@ -60,7 +60,7 @@ const SignIn = () => {
     } else {
       toast.success("Login successful");
       timeout = setTimeout(() => {
-        router.push("/onboarding");
+        router.push("/choose-test");
       }, 1000);
     }
   };
