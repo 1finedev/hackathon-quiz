@@ -40,7 +40,10 @@ const Header = ({ className }) => {
               Contact{" "}
             </Link>
           </li>
-          <li onClick={() => signOut().then(() => router.push("/"))}>
+          <li
+            className="cursor-pointer"
+            onClick={() => signOut().then(() => router.push("/"))}
+          >
             Sign Out{" "}
           </li>
         </ul>
