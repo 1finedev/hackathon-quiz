@@ -27,7 +27,6 @@ function ChooseTest() {
   const [quizType, setQuizType] = useState("JavaScript");
 
   const handleProceed = () => {
-    toast.info("Starting quiz, please wait...");
     axios
       .post("/api/quiz/start", { category: quizType })
       .then((res) => {
