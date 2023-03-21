@@ -13,12 +13,13 @@ const Layout = ({ children, className }) => {
         <Header className={className} />
       )}
       <main
-        className={`${className} text-white pt-[3rem] h-[100vh] flex justify-center items-center`}
+        className={`${className} text-white pt-[3rem] h-[100vh] flex justify-center items-center overflow-scroll`}
       >
         {children}{" "}
       </main>
       {pathname === "/sign-up" ||
       pathname === "/sign-in" ||
+      pathname === "/quiz" ||
       pathname === "/choose-test" ? null : (
         <Footer className={className} />
       )}

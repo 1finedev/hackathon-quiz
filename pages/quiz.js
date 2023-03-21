@@ -2,7 +2,7 @@ import React from "react";
 
 const quiz = () => {
   return (
-    <div className="w-screen h-screen xl:flex bg-[101010] px-6 xl:px-0">
+    <div className="w-full h-full xl:flex bg-[101010] px-6 xl:px-0">
       <div className="bg-[#101010] flex items-center justify-center basis-1/2 lg:basis-[55%] pt-14 pb-11">
         <div className="w-full max-w-[664px] space-y-14">
           <div className="text-xl lg:text-3xl flex items-center justify-between w-full">
