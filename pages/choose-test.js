@@ -12,7 +12,7 @@ import { BsArrowLeft } from "react-icons/bs";
 const data = [
   {
     icon: jsLogo,
-    type: "Javascript",
+    type: "JavaScript",
     text: "This section will test your knowledge and skills on vanilla Javascript",
   },
   {
@@ -24,7 +24,7 @@ const data = [
 
 function ChooseTest() {
   const router = useRouter();
-  const [quizType, setQuizType] = useState("Javascript");
+  const [quizType, setQuizType] = useState("JavaScript");
 
   const handleProceed = () => {
     toast.info("Starting quiz, please wait...");
