@@ -35,7 +35,7 @@ const handler = async (req, res) => {
           $inc: {
             totalCorrect: question.answer === answer ? 1 : 0,
           },
-          nextQuestionEndsIn: Date.now() + 1000 * 65,
+          nextQuestionEndsIn: Date.now() + 1000 * 35,
         }
       );
 

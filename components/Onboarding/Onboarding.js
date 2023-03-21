@@ -20,26 +20,26 @@ const FirstStep = () => {
     >
       <div className=" md:grid md:grid-cols-10 lg:gap-36">
         {/* Left Column */}
-        <div className="flex flex-col md:grid items-center md:items-start md:col-span-4 py-40 px-10 md:pr-0 md:pl-20">
-          <div className=" text-center md:text-left">
+        <div className="flex flex-col items-center px-10 py-40 md:grid md:items-start md:col-span-4 md:pr-0 md:pl-20">
+          <div className="text-center  md:text-left">
             <h1 className="text-[1.3rem] font-semibold ">Hackathon 4.0 🔥</h1>
             <p className="font-medium text-[#06BA6B] text-3xl mt-5">
               Welcome to the assessment for the hackathon of a lifetime.
             </p>
-            <p className="font-normal text-sm mt-5">
+            <p className="mt-5 text-sm font-normal">
               It&apos;s great that you got this far, your sweat will turn to
               blood, your eyes will see shege but the good thing is that, you
               won&apos;t die.
             </p>
           </div>
-          <div className="mt-10 px-7 py-3 border-yellow-600 border-2 bg-yellow-400 bg-opacity-20 text-yellow-400 rounded-md flex flex-row w-64 gap-4">
+          <div className="flex flex-row w-64 gap-4 py-3 mt-10 text-yellow-400 bg-yellow-400 border-2 border-yellow-600 rounded-md px-7 bg-opacity-20">
             <Image src="/warning.svg" alt="warning" width={25} height={25} />
 
-            <h1 className="text-xs  ">
+            <h1 className="text-xs ">
               Before you proceed, read the instructions carefully.
             </h1>
           </div>
-          <div className=" flex items-center md:items-start gap-2 mt-10">
+          <div className="flex items-center gap-2 mt-10  md:items-start">
             <input
               type="checkbox"
               checked={checked}
@@ -63,7 +63,7 @@ const FirstStep = () => {
           </Link>
         </div>
 
-        <div className="col-span-1 hidden md:flex"></div>
+        <div className="hidden col-span-1 md:flex"></div>
 
         {/* Right Column */}
         <div
