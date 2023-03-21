@@ -1,6 +1,6 @@
 import getSession from "../backend/getSession";
 import React, { useMemo, useRef } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import countryCode from "../components/countryCod.json";
@@ -9,7 +9,7 @@ import hidePass from "../public/hide-password.svg";
 import showPass from "../public/show-password.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { BsArrowRight} from 'react-icons/bs'
+import { BsArrowLeft } from "react-icons/bs";
 
 export async function getServerSideProps({ req, res }) {
   const session = await getSession(req, res);
@@ -66,14 +66,17 @@ const SignIn = () => {
 
   return (
     <div className="  flex flex-col justify-center w-[90%] max-w-[350px] items-center gap-5">
-        {/* Navigate To LogIn */}
-        <div className="fixed top-2 left-1 flex items-center">
-          <span className="mr-2">Sign Up</span>
-          <button>
-            <Link href={"/sign-up"}><span className="text-white text-2xl"><BsArrowRight/></span></Link>
-          </button>
-  
-        </div>
+      <div
+        onClick={() => router.back()}
+        className="fixed top-[5vh] left-[5vh] flex items-center"
+      >
+        <button>
+          <span className="text-white text-2xl">
+            <BsArrowLeft />
+          </span>
+        </button>
+        <span className="ml-2">Go back</span>
+      </div>
       <h2 className="text-4xl mb-3 ">Login</h2>
       <p className="">Welcome back, let&apos;s get you started</p>
 
@@ -180,6 +183,12 @@ const SignIn = () => {
           Login
         </button>
       </form>
+      <p>
+        Don&apos;t have an account yet?{" "}
+        <Link href="/sign-up" className="text-secondary-mid">
+          Sign up
+        </Link>
+      </p>
     </div>
   );
 };

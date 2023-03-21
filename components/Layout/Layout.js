@@ -18,7 +18,7 @@ const Layout = ({ children, className }) => {
       >
         {children}{" "}
       </main>
-      {pathname === "/sign-up" ||
+      {pathname === "/sign-up" |
       pathname === "/sign-in" ||
       pathname === "/choose-test" ? null : (
         <Footer className={className} />

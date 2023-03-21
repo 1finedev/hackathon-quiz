@@ -1,7 +1,8 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo, useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import Countdown from "react-countdown";
 
 export async function getServerSideProps(context) {
   const { quizId } = context.query;
@@ -24,27 +25,73 @@ const Quiz = ({ quizId }) => {
   const router = useRouter();
   const [question, setQuestions] = useState();
   const [answer, setAnswer] = useState();
+  const [reset, setReset] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const fetched = useRef(false);
 
-  console.log(question);
+  const time = useMemo(() => {
+    if (reset) {
+      return Date.now() + 30000;
+    } else {
+      return Date.now() + 30000;
+    }
+  }, [reset]);
 
   const fetchQuestion = useCallback(async () => {
+    setLoading(true);
     axios
       .post("/api/questions/getOne", { quizId })
-      .then((response) =>
+      .then((response) => {
         setQuestions({
           ...response.data.question,
           count: response.data.totalAttempted,
-        })
-      )
+        });
+        setReset((prev) => !prev);
+      })
       .catch((err) => {
-        toast.error(err.response.data.error);
+        console.log(err);
+        toast.error(err.response?.data?.error);
         router.push("/choose-test");
       });
-  }, [quizId, router]);
+    setLoading(false);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const submitAnswer = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    if (!answer) {
+      toast.error("Please select an answer");
+      return;
+    }
+
+    axios
+      .post("/api/questions/checkAnswer", {
+        quizId,
+        questionId: question._id,
+        answer,
+      })
+      .then((res) => {
+        setAnswer();
+        fetchQuestion();
+      })
+      .catch((err) => {
+        console.log("got here");
+        toast.error(err.response?.data?.error);
+        router.push("/choose-test");
+      });
+
+    setLoading(false);
+  };
 
   useEffect(() => {
-    fetchQuestion();
-  }, [fetchQuestion]);
+    if (!fetched.current) {
+      fetched.current = true;
+      fetchQuestion();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className=" flex flex-col xl:flex-row xl:flex bg-[101010] px-6 xl:px-0 w-full max-w-7xl gap-4 xl:gap-36 ml-auto">
@@ -64,7 +111,25 @@ const Quiz = ({ quizId }) => {
                   fill="white"
                 />
               </svg>
-              <h1>00:30</h1>
+
+              <Countdown
+                date={time}
+                renderer={({ seconds, completed }) => {
+                  return (
+                    <h3
+                      className={
+                        completed
+                          ? "text-red-500"
+                          : seconds < 10
+                          ? "text-red-500 animate-ping"
+                          : "text-green-500"
+                      }
+                    >
+                      {completed ? "Time up!" : seconds}
+                    </h3>
+                  );
+                }}
+              />
             </div>
           </div>
 
@@ -90,14 +155,21 @@ const Quiz = ({ quizId }) => {
               >
                 <input
                   type="radio"
+                  id={option}
                   value={option}
                   checked={answer === option ? true : false}
                   onChange={(e) => setAnswer(e.target.value)}
                 />
-                <p className="text-md md:xl">{option}</p>
+                <label htmlFor={option} className="text-md md:xl">
+                  {option}
+                </label>
               </div>
             ))}
-            <button className="w-full h-[60px] max-w-[365px] rounded-lg bg-white text-xl text-[#011221] font-bold mt-10">
+            <button
+              onClick={submitAnswer}
+              disabled={loading}
+              className="w-full h-[60px] max-w-[365px] rounded-lg bg-white text-xl text-[#011221] font-bold mt-10 disabled:cursor-not-allowed"
+            >
               Submit Answer
             </button>
           </form>

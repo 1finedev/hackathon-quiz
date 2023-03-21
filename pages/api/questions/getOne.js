@@ -30,9 +30,9 @@ export default async function handler(req, res) {
         (attempted) => new mongoose.Types.ObjectId(attempted)
       );
 
-      console.log(attempted);
       const question = await Question.findOne({
         _id: { $nin: attempted },
+        category: quiz.category,
       });
 
       if (!question)
@@ -43,6 +43,7 @@ export default async function handler(req, res) {
         {
           $push: { questionsAttempted: question._id },
           nextQuestionEndIn: Date.now() + 1000 * 65,
+          $inc: { totalAttempted: 1 },
         }
       );
 

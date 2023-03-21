@@ -182,7 +182,6 @@ body {
         px-4
         rounded-md
         border
-        transition-all
         transition-all;
   }
 
@@ -325,7 +324,18 @@ body {
   input[type="radio"]:checked {
     --s: 0.5;
   }
-
+  .circle {
+    clip-path: circle(50% at 50% 50%);
+  }
+  .stack {
+    @apply grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+  .stack > * {
+    grid-column: 1/1;
+    grid-row: 1/1;
+  }
   .v-enter-active,
   .v-leave-active {
     transition: opacity 300ms ease;
