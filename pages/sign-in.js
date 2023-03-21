@@ -81,7 +81,7 @@ const SignIn = () => {
         className="flex w-full flex-col gap-5 p-5  "
         autoComplete="off"
       >
-        <fieldset className="flex flex-col gap-3 ">
+        <fieldset className="flex flex-col gap-3 min-w-0 ">
           <label htmlFor="name" className="text-sm">
             Whatsapp Number
           </label>
@@ -139,12 +139,12 @@ const SignIn = () => {
               name="tel"
               maxLength={11}
               placeholder="Whatsapp number"
-              className="form-control bg-transparent flex-auto w-auto focus-within:outline-none focus-within:cursor-text"
+              className="bg-transparent flex-auto w-auto focus-within:outline-none focus-within:cursor-text placeholder:text-ellipsis min-w-0"
             />
           </div>
         </fieldset>
 
-        <fieldset className="flex flex-col gap-3 relative ">
+        <fieldset className="flex flex-col gap-3 relative min-w-0 ">
           <label htmlFor="password" className="text-sm">
             Password
           </label>
