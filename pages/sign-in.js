@@ -14,7 +14,7 @@ export async function getServerSideProps({ req, res }) {
   if (session) {
     return {
       redirect: {
-        destination: "/onboarding",
+        destination: "/choose-test",
         permanent: false,
       },
     };
