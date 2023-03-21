@@ -29,6 +29,10 @@ const quizSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    totalAttempted: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,

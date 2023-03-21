@@ -1,5 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps(context) {
   const { quizId } = context.query;
@@ -19,22 +21,37 @@ export async function getServerSideProps(context) {
 }
 
 const Quiz = ({ quizId }) => {
-  const fetchQuestion = async () => {
-    const response = await axios.post("/api/questions/getOne", { quizId });
+  const router = useRouter();
+  const [question, setQuestions] = useState();
+  const [answer, setAnswer] = useState();
 
-    console.log(response);
-  };
+  console.log(question);
+
+  const fetchQuestion = useCallback(async () => {
+    axios
+      .post("/api/questions/getOne", { quizId })
+      .then((response) =>
+        setQuestions({
+          ...response.data.question,
+          count: response.data.totalAttempted,
+        })
+      )
+      .catch((err) => {
+        toast.error(err.response.data.error);
+        router.push("/choose-test");
+      });
+  }, [quizId, router]);
 
   useEffect(() => {
     fetchQuestion();
-  }, []);
+  }, [fetchQuestion]);
 
   return (
     <div className="w-screen h-screen xl:flex bg-[101010] px-6 xl:px-0">
       <div className="bg-[#101010] flex items-center justify-center basis-1/2 lg:basis-[55%] pt-14 pb-11">
         <div className="w-full max-w-[664px] space-y-14">
           <div className="text-xl lg:text-3xl flex items-center justify-between w-full">
-            <h1>Question 1/15</h1>
+            <h1>Question {question?.count + 1 || 1}/20</h1>
             <div className="flex items-center gap-3">
               <svg
                 className="w-8 h-8 rounded-full"
@@ -57,8 +74,10 @@ const Quiz = ({ quizId }) => {
             first.
           </p>
 
-          <div className="bg-[#1E2D3D] border border-[#1E2D3D] w-full h-[344px] md:h-[216px] rounded-lg overflow-hidden p-6">
-            <div className="w-full h-full"></div>
+          <div className="bg-[#1E2D3D] border border-[#1E2D3D] w-full rounded-lg overflow-hidden p-6">
+            <div className="w-full h-full">
+              <p className="text-center text-xl">{question?.question}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -68,26 +87,20 @@ const Quiz = ({ quizId }) => {
           <h1 className="text-xl lg:text-3xl">Select your answer</h1>
 
           <form className="relative">
-            <div className="space-x-5 py-4">
-              <input type="radio" value="" />
-              <label>A. The answer for A goes here</label>
-            </div>
-
-            <div className="space-x-5 py-4">
-              <input type="radio" value="" />
-              <label>B. The answer for B goes here</label>
-            </div>
-
-            <div className="space-x-5 py-4">
-              <input type="radio" value="" />
-              <label>C. The answer for C goes here</label>
-            </div>
-
-            <div className="space-x-5 py-4">
-              <input type="radio" value="" />
-              <label>D. The answer for D goes here</label>
-            </div>
-
+            {question?.options?.map((option) => (
+              <div
+                className="flex flex-row items-center space-x-5 py-4"
+                key={option}
+              >
+                <input
+                  type="radio"
+                  value={option}
+                  checked={answer === option ? true : false}
+                  onChange={(e) => setAnswer(e.target.value)}
+                />
+                <label className="text-2xl">{option}</label>
+              </div>
+            ))}
             <button className="w-full h-[60px] max-w-[365px] rounded-lg bg-white text-xl text-[#011221] font-bold mt-10">
               Submit Answer
             </button>
@@ -99,3 +112,4 @@ const Quiz = ({ quizId }) => {
 };
 
 export default Quiz;
+Quiz.auth = true;

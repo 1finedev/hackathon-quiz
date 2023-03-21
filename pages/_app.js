@@ -13,7 +13,12 @@ const inter = Inter({ subsets: ["latin"] });
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
-    <SessionProvider session={session}>
+    <SessionProvider
+      session={session} // Re-fetch session every 5 minutes
+      refetchInterval={5 * 60}
+      // Re-fetches session when window is focused
+      refetchOnWindowFocus={true}
+    >
       <NextNProgress color="white" />
       <Layout className={inter.className}>
         {Component.auth ? (

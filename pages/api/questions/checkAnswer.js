@@ -36,7 +36,7 @@ const handler = async (req, res) => {
               question.answer === answer && Quiz.nextQuestionEndsIn < Date.now()
                 ? 1
                 : 0,
-            questionsAttempted: 1,
+            totalAttempted: 1,
           },
           nextQuestionEndsIn: Date.now() + 1000 * 65,
         }
