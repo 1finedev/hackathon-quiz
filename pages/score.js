@@ -9,7 +9,7 @@ const Score = () => {
           }}>
          
           </div>
-            <div className='p-3 aspect-square grid relative after:absolute after:inset-0 after:w-full   after:rounded-full    place-items-center w-fit rounded-full bg-black' >
+            <div className='p-6 aspect-square grid relative after:absolute after:inset-0 after:w-full   after:rounded-full    place-items-center w-fit rounded-full bg-black' >
                 <h1 className='text-[#06BA6B] font-semibold text-5xl lg:text-6xl'>81%</h1>
             </div>
         </div>
