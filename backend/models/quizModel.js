@@ -18,6 +18,7 @@ const quizSchema = new mongoose.Schema(
     },
     category: {
       type: String,
+      enum: ["Javascript", "React"],
       required: true,
     },
     nextQuestionEndsIn: {

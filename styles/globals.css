@@ -377,4 +377,7 @@ body {
   section.sign-up form button {
     @apply bg-secondary-mid py-3 rounded-md font-bold text-sm;
   }
+  .error {
+    @apply border border-red-700;
+  }
 }

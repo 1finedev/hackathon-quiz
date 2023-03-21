@@ -1,9 +1,8 @@
-// import getSession from "../backend/getSession";
+import getSession from "../backend/getSession";
 import React, { useMemo, useRef } from "react";
 import { useState, useEffect } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import Alert from "../components/Alert";
 import countryCode from "../components/countryCod.json";
 import { toast } from "react-toastify";
 import hidePass from "../public/hide-password.svg";
@@ -12,22 +11,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsArrowRight} from 'react-icons/bs'
 
-// export async function getServerSideProps({ req, res }) {
-//   const session = await getSession(req, res);
-//   if (session) {
-//     return {
-//       redirect: {
-//         destination: "/onboarding",
-//         permanent: false,
-//       },
-//     };
-//   }
-//   return {
-//     props: {
-//       session,
-//     },
-//   };
-// }
+export async function getServerSideProps({ req, res }) {
+  const session = await getSession(req, res);
+  if (session) {
+    return {
+      redirect: {
+        destination: "/choose-test",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      session,
+    },
+  };
+}
 
 const SignIn = () => {
   const router = useRouter();
@@ -63,7 +62,7 @@ const SignIn = () => {
     } else {
       toast.success("Login successful");
       timeout = setTimeout(() => {
-        router.push("/onboarding");
+        router.push("/choose-test");
       }, 1000);
     }
   };
@@ -92,7 +91,7 @@ const SignIn = () => {
         className="flex w-full flex-col gap-5 p-5  "
         autoComplete="off"
       >
-        <fieldset className="flex flex-col gap-3 ">
+        <fieldset className="flex flex-col gap-3 min-w-0 ">
           <label htmlFor="name" className="text-sm">
             Whatsapp Number
           </label>
@@ -150,12 +149,12 @@ const SignIn = () => {
               name="tel"
               maxLength={11}
               placeholder="Whatsapp number"
-              className="form-control bg-transparent flex-auto w-auto focus-within:outline-none focus-within:cursor-text"
+              className="bg-transparent flex-auto w-auto focus-within:outline-none focus-within:cursor-text placeholder:text-ellipsis min-w-0"
             />
           </div>
         </fieldset>
 
-        <fieldset className="flex flex-col gap-3 relative ">
+        <fieldset className="flex flex-col gap-3 relative min-w-0 ">
           <label htmlFor="password" className="text-sm">
             Password
           </label>

@@ -3,23 +3,43 @@ import reactLogo from "../public/react.svg";
 import Card from "../components/Layout/Card";
 import Link from "next/link";
 import Button from "../components/Button";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const data = [
   {
     icon: jsLogo,
     type: "Javascript",
-    text: " This section will test your knowledge and skills on vanilla javscript",
+    text: "This section will test your knowledge and skills on vanilla Javascript",
   },
   {
     icon: reactLogo,
     type: "React",
-    text: " This section will test your knowledge and skills on React",
+    text: "This section will test your knowledge and skills on ReactJs",
   },
 ];
 
 function ChooseTest() {
   const [quizType, setQuizType] = useState("Javascript");
+
+  const checkedPreviousType = useRef(false);
+
+  // ensure previous type is checked on page load for quiz continuity
+  useEffect(() => {
+    if (!checkedPreviousType.current) {
+      const previousType = localStorage.getItem("quizType");
+      if (previousType) {
+        setQuizType(JSON.parse(previousType));
+      }
+      checkedPreviousType.current = true;
+    }
+  }, []);
+
+  // update localStorage with current quiz type
+  useEffect(() => {
+    if (checkedPreviousType.current) {
+      localStorage.setItem("quizType", JSON.stringify(quizType));
+    }
+  }, [quizType]);
 
   return (
     <section className="flex flex-col bg  gap-5 p-5 max-w-[700px]">
