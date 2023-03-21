@@ -7,12 +7,19 @@ import { SessionProvider } from "next-auth/react";
 import Loading from "../components/Loading";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NextNProgress from "nextjs-progressbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
-    <SessionProvider session={session}>
+    <SessionProvider
+      session={session} // Re-fetch session every 5 minutes
+      refetchInterval={5 * 60}
+      // Re-fetches session when window is focused
+      refetchOnWindowFocus={true}
+    >
+      <NextNProgress color="white" />
       <Layout className={inter.className}>
         {Component.auth ? (
           <Auth>
@@ -23,7 +30,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         )}
         <ToastContainer
           position="top-center"
-          autoClose={5000}
+          autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
@@ -40,6 +47,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
 const Auth = ({ children }) => {
   const { data: session, status } = useSession();
+  console.log(session);
 
   const isUser = !!session?.user;
 

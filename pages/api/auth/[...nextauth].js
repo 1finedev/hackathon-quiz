@@ -9,6 +9,7 @@ const useSecureCookies = process.env.NODE_ENV === "production" ? true : false;
 export const authOptions = {
   session: {
     strategy: "jwt",
+    maxAge: 3600,
   },
   providers: [
     CredentialsProvider({
@@ -65,6 +66,7 @@ export const authOptions = {
       return true;
     },
     async session({ session, token }) {
+      token && (session.user = token.user);
       return session;
     },
     async jwt({ token, user }) {

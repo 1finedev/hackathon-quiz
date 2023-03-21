@@ -1,0 +1,95 @@
+[
+  {
+    "question": "What is the output of the following code? \n console.log(2 + '2');",
+    "options": ["22", "4", "NaN", "undefined"],
+    "answer": "22",
+    "category": "JavaScript"
+  },
+  {
+    "category": "JavaScript",
+    "question": "What is the output of the following code: console.log(typeof [])?",
+    "options": ["'array'", "'object'", "'null'", "'undefined'"],
+    "answer": "'object'"
+  },
+  {
+    "category": "JavaScript",
+    "question": "What keyword is used to declare a variable in JavaScript?",
+    "options": ["let", "var", "const", "all of the above"],
+    "answer": "let"
+  },
+  {
+    "question": "Which of the following is used to add an element to the end of an array in JavaScript?",
+    "options": ["unshift()", "push()", "splice()", "concat()"],
+    "answer": "push()",
+    "category": "JavaScript"
+  },
+  {
+    "question": "What is the result of the following expression? \n 5 == '5'",
+    "options": ["true", "false", "undefined", "null"],
+    "answer": "true",
+    "category": "JavaScript"
+  },
+  {
+    "question": "What is the correct way to write a JavaScript function?",
+    "options": [
+      "function = myFunction()",
+      "myFunction = function()",
+      "function myFunction()",
+      "function:myFunction()"
+    ],
+    "answer": "function myFunction()",
+    "category": "JavaScript"
+  },
+  {
+    "question": "Which of the following is a loop statement in JavaScript?",
+    "options": ["for", "if", "switch", "try"],
+    "answer": "for",
+    "category": "JavaScript"
+  },
+  {
+    "category": "JavaScript",
+    "question": "Which of the following is a valid way to check if an object has a certain property?",
+    "options": [
+      "obj.hasOwnProperty('prop')",
+      "obj.contains('prop')",
+      "obj.property('prop')",
+      "obj.key('prop')"
+    ],
+    "answer": "obj.hasOwnProperty('prop')"
+  },
+  {
+    "question": "What is the result of the following expression? \n typeof(null)",
+    "options": ["undefined", "null", "object", "none of the above"],
+    "answer": "object",
+    "category": "JavaScript"
+  },
+  {
+    "category": "JavaScript",
+    "question": "Which keyword is used to declare a constant variable in JavaScript?",
+    "options": ["let", "var", "const", "const var"],
+    "answer": "const"
+  },
+  {
+    "category": "JavaScript",
+    "question": "What is the result of the following code: '5' * 2;",
+    "options": ["10", "'52'", "7", "NaN"],
+    "answer": "10"
+  },
+  {
+    "category": "JavaScript",
+    "question": "What is the difference between let and const in JavaScript?",
+    "options": [
+      "let variables can be reassigned, while const variables cannot",
+      "const variables can be reassigned, while let variables cannot",
+      "let variables have function scope, while const variables have block scope",
+      "const variables have function scope, while let variables have block scope"
+    ],
+    "answer": "let variables can be reassigned, while const variables cannot"
+  },
+  {
+    "category": "JavaScript",
+    "question": "What is the output of the following code: console.log('foo'.split('').reverse().join(''));",
+    "options": ["'foo'", "'ofo'", "'f'", "'oof'"],
+    "answer": "'oof'"
+  }
+]
