@@ -2,6 +2,8 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Link from 'next/link'
+import {BsArrowLeft} from "react-icons/bs"
 
 function SignUp() {
   const router = useRouter();
@@ -51,6 +53,15 @@ function SignUp() {
   };
   return (
     <section className="sign-up">
+      {/* Navigate To LogIn */}
+        <div className="fixed top-2 left-1 flex items-center">
+          <button>
+            <Link href={"/sign-in"}><span className="text-white text-2xl"><BsArrowLeft/></span></Link>
+          </button>
+        <span className="ml-2">Back To sign In</span>
+        </div>
+
+
       <div className="text-center space-y-2">
         <h1>Get Started</h1>
         <p>
