@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import Button from "../Button";
 import Link from "next/link";
 
 const FirstStep = () => {
   const [checked, setChecked] = useState(false);
 
+  const router = useRouter();
+
   const handleCheck = (e) => {
     setChecked(e.target.checked);
+  };
+
+  const handleGetStarted = () => {
+    router.push("sign-up");
   };
 
   return (
@@ -54,13 +61,13 @@ const FirstStep = () => {
               </a>
             </label>
           </div>
-          <Link href={"/sign-in"}>
-            <Button
-              disabled={!checked}
-              label="Get Started"
-              classes="mt-14 w-64 text-sm bg-[#06BA6B] text-white font-medium py-2 px-6 rounded-md disabled:bg-gray-500"
-            />
-          </Link>
+
+          <Button
+            disabled={!checked}
+            label="Get Started"
+            classes="mt-14 w-64 text-sm bg-[#06BA6B] text-white font-medium py-2 px-6 rounded-md disabled:bg-gray-500"
+            onClick={handleGetStarted}
+          />
         </div>
 
         <div className="hidden col-span-1 md:flex"></div>
