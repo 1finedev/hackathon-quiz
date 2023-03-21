@@ -4,10 +4,10 @@ import connectToDb from "./../../../backend/connectToDb";
 export const handler = async (req, res) => {
   await connectToDb();
   if (req.method === "POST") {
-    const { whatsappName, passwordConfirm, mobile, password } = req.body.value;
+    const { whatsappName, passwordConfirm, mobile, password } = req.body;
 
     // check if all fields are filled
-    if (!password || whatsappName || passwordConfirm || !mobile) {
+    if (!password || !whatsappName || !passwordConfirm || !mobile) {
       return res.status(400).json({ error: "Incomplete Signup Credentials" });
     }
 
@@ -41,7 +41,7 @@ export const handler = async (req, res) => {
       newUser.password = undefined;
       return res.status(201).json({
         status: "success",
-        msg: "Account created successfully",
+        message: "Account created successfully",
       });
     } catch (error) {
       console.log(error);

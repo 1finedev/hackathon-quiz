@@ -346,35 +346,35 @@ body {
     @apply bg-[#101010];
   }
 
-  section {
+  section.sign-up {
     @apply flex justify-center items-center mx-auto flex-col w-[90%] max-w-sm py-6 gap-6;
   }
 
-  section p {
+  section.sign-up p {
     @apply text-center text-lg text-secondary-darkGray;
   }
 
-  section h1 {
+  section.sign-up h1 {
     @apply text-4xl font-bold;
   }
 
-  section form {
+  section.sign-up form {
     @apply flex flex-col gap-4  w-full;
   }
 
-  section form div {
+  section.sign-up form div {
     @apply flex flex-col gap-4 text-secondary-darkGray;
   }
 
-  section form div input {
+  section.sign-up form div input {
     @apply border border-secondary-darkGray bg-transparent h-12 w-full rounded-md px-5;
   }
 
-  section form div input:focus {
+  section.sign-up form div input:focus {
     @apply outline-none;
   }
 
-  section form button {
+  section.sign-up form button {
     @apply bg-secondary-mid py-3 rounded-md font-bold text-sm;
   }
   .error {

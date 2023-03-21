@@ -1,60 +1,56 @@
-import { setConfig } from "next/config";
-import { useState, useEffect, useMemo, useRef } from "react";
-import countryCode from "../components/countryCod.json";
-import { validator } from "../functions/helpers";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 function SignUp() {
-  const [selectedCode, setSelectedCode] = useState("");
-  const [showCodes, setShowCodes] = useState(false);
-  const codes = useMemo(() => countryCode.countries, []);
-   const codeInputs = useRef();
-   const countrycode = useRef()
-   const confirmPassword = useRef();
-   const name = useRef();
-   const phoneNumber = useRef();
-   const password  = useRef();
-  
-   const resetError = () => {
-    password.current.classList.remove('error');
-    phoneNumber.current.classList.remove('error');
-    name.current.classList.remove('error');
-    confirmPassword.current.classList.remove('error');
-    
-   }
-   const submitHandler = (e) => {
+  const router = useRouter();
+  const [values, setValues] = useState({
+    whatsappName: "",
+    mobile: "",
+    password: "",
+    passwordConfirm: "",
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleSignup = async (e) => {
     e.preventDefault();
-    if(password.current.value !== confirmPassword.current.value){
-      confirmPassword.current.focus();
-      confirmPassword.current.classList.add('error')
-      
+
+    // basic input validation
+
+    if (!values.mobile.includes("+")) {
+      toast.error("Phone number must include +countryCode!");
+      return;
     }
-    const valiObj = {
-      name:{
-        element: name.current,
-        value: name.current.value,
-        pattern: /^@[\w]/
-      },
-      phoneNumber:{
-        element: phoneNumber.current,
-        value: phoneNumber.current,
-        max: 11
-      },
-      password: {
-        element:password.current,
-        value: password.current.value
-      },
-      coutryCode:{
-        element:countrycode.current,
-        value: selectedCode,
-      }
-     }
-    let valid = validator(valiObj);
-    if(!valid) return;
-    e.target.reset();
-    setSelectedCode('')
-   }
+    if (values.mobile.length < 13) {
+      toast.error("Phone number invalid or incomplete!");
+      return;
+    }
+
+    if (values.password.length < 6) {
+      toast.error("Password must be at least 6 characters");
+      return;
+    }
+    if (values.password !== values.passwordConfirm) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    // send data to backend
+    setLoading(true);
+    axios
+      .post("/api/auth/signup", values)
+      .then((res) => {
+        toast.success(res.data.message);
+        router.push("/sign-in");
+      })
+      .catch((err) => {
+        toast.error(err.response.data.error);
+      });
+    setLoading(false);
+  };
   return (
-    <section>
+    <section className="sign-up">
       <div className="text-center space-y-2">
         <h1>Get Started</h1>
         <p>
@@ -62,81 +58,69 @@ function SignUp() {
           4.0
         </p>
       </div>
-      <form className="mt-4" onSubmit={submitHandler} onChange={resetError}>
+      <form className="mt-4" onSubmit={handleSignup}>
         <div>
           <label>WhatsApp Name</label>
-          <input type="text" placeholder="@whatsappname" required ref={name}  />
+          <input
+            type="text"
+            placeholder="@whatsappname"
+            required
+            onInput={(e) =>
+              setValues((prevValues) => ({
+                ...prevValues,
+                whatsappName: e.target.value,
+              }))
+            }
+          />
         </div>
         <div>
-        <label htmlFor="name" className="text-sm">
-              Whatsapp Number
-            </label>
-            <div className="flex flex-row cursor-pointer mt-2  border bg-transparent outline-0 relative border-gray-500 py-1 max-w-full items-center rounded pl-3 gap-2" tabIndex={2} ref={phoneNumber}>
-              <div
-                className="flex items-center focus:border focus:border-black focus:border-solid  w-fit"
-                onClick={() => {
-                  setShowCodes((prev) => !prev);
-                  codeInputs.current.focus();
-                }}  
-                ref={countrycode}
-                onFocus={(() => {
-                  setShowCodes(true)
-                })}
-
-              >
-                <span
-                  className={`${
-                    !selectedCode && "opacity-70"
-                  } text-sm md:text-lg whitespace-nowrap max-w-full`}
-                >
-                  {selectedCode || "+234"}
-                </span>
-              </div>
-              <ul
-                className={`bg-[#1e1e1e]  px-3 cursor-pointer flex flex-col gap-3 w-fit max-h-32 overflow-y-scroll absolute left-2 z-50 top-full outline-0 ${
-                  showCodes ? "h-auto  py-3 " : "h-0"
-                } transition-all duration-300 ease-out`}
-                onBlur={() => {
-                  setShowCodes(false);
-                }}
-                ref={codeInputs}
-                tabIndex={4}
-              >
-                {codes.map((cod) => (
-                  <li
-                    key={cod.name}
-                    value={cod.code}
-                    onClick={() => {
-                      setSelectedCode(cod.code);
-                      countrycode.current.classList.remove('error');
-                      setShowCodes(false);
-                    }}
-                  >
-                    {cod.name} {cod.code}
-                  </li>
-                ))}
-              </ul>
-              <input
-                autoComplete={"off"}
-                required
-                type="tel"
-                id="tel"
-                name="tel"
-                maxLength={11}
-                placeholder="Whatsapp number"
-                className="form-control bg-transparent flex-auto w-auto focus-within:outline-none focus-within:cursor-text border-none px-0"
-              />
-            </div>  
+          <label>Phone Number</label>
+          <input
+            type="tel"
+            placeholder="+2349036235456"
+            required
+            onInput={(e) =>
+              setValues((prevValues) => ({
+                ...prevValues,
+                mobile: e.target.value,
+              }))
+            }
+          />
         </div>
         <div>
           <label>Password</label>
-          <input type="password" placeholder="Enter password" required ref={password} />
+          <input
+            type="password"
+            placeholder="Enter password"
+            required
+            onInput={(e) =>
+              setValues((prevValues) => ({
+                ...prevValues,
+                password: e.target.value,
+              }))
+            }
+          />
         </div>
         <div>
           <label>Confirm Password</label>
-          <input type="password" placeholder="Password again" required ref={confirmPassword}  />
+          <input
+            type="password"
+            placeholder="Password again"
+            required
+            onInput={(e) =>
+              setValues((prevValues) => ({
+                ...prevValues,
+                passwordConfirm: e.target.value,
+              }))
+            }
+          />
         </div>
-        <button className="mt-6">Register</button>
+        <button
+          className="mt-6 disabled:cursor-not-allowed disabled:bg-gray-400"
+          disabled={loading}
+        >
+          Register
+        </button>
       </form>
     </section>
   );

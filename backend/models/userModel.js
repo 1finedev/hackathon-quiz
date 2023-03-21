@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema(
     mobile: {
       type: String,
       required: true,
-      unique: true,
       minlength: 13,
     },
     password: {
@@ -65,14 +64,14 @@ userSchema.indexes({
 });
 
 // run before a find action is performed
-userSchema.pre(/^find/, function () {
-  // this points to the current query
-  this.find({
-    suspended: {
-      $ne: false,
-    },
-  });
-});
+// userSchema.pre(/^find/, function () {
+//   // this points to the current query
+//   this.find({
+//     suspended: {
+//       $ne: true,
+//     },
+//   });
+// });
 
 // hash password before saving
 userSchema.pre("save", async function () {

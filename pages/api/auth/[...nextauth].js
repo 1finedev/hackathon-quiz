@@ -17,6 +17,8 @@ export const authOptions = {
 
         //1. check credentials for body data
         const { mobile, password } = credentials;
+
+        console.log(credentials);
         if (!mobile || !password) {
           throw new Error("Incomplete details");
         }
