@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 import hidePass from "../public/hide-password.svg";
 import showPass from "../public/show-password.svg";
 import Image from "next/image";
+import Link from "next/link";
+import { BsArrowRight} from 'react-icons/bs'
 
 export async function getServerSideProps({ req, res }) {
   const session = await getSession(req, res);
@@ -64,6 +66,14 @@ const SignIn = () => {
 
   return (
     <div className="  flex flex-col justify-center w-[90%] max-w-[350px] items-center gap-5">
+        {/* Navigate To LogIn */}
+        <div className="fixed top-2 left-1 flex items-center">
+          <span className="mr-2">Sign Up</span>
+          <button>
+            <Link href={"/sign-up"}><span className="text-white text-2xl"><BsArrowRight/></span></Link>
+          </button>
+  
+        </div>
       <h2 className="text-4xl mb-3 ">Login</h2>
       <p className="">Welcome back, let&apos;s get you started</p>
 
