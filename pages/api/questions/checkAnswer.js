@@ -23,8 +23,9 @@ const handler = async (req, res) => {
         return res.status(404).json({ error: "Question not found!" });
 
       const quiz = await Quiz.findOne({
-        _id: questionId,
+        _id: quizId,
       });
+
       if (!quiz) return res.status(404).json({ error: "Quiz not found!" });
 
       // update score if answer is correct or wrong
@@ -32,15 +33,16 @@ const handler = async (req, res) => {
         { _id: quizId },
         {
           $inc: {
-            totalCorrect:
-              question.answer === answer && Quiz.nextQuestionEndsIn < Date.now()
-                ? 1
-                : 0,
-            totalAttempted: 1,
+            totalCorrect: question.answer === answer ? 1 : 0,
           },
           nextQuestionEndsIn: Date.now() + 1000 * 65,
         }
       );
+
+      return res.status(200).json({
+        status: "success",
+        message: "Answer submitted successfully",
+      });
     } catch (error) {
       console.log(error.message);
       res.status(500).json({ error: "Internal Server Error" });
