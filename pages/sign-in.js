@@ -184,7 +184,7 @@ const SignIn = () => {
         </button>
       </form>
       <p>
-        Don't have an account yet?{" "}
+        Don&apos;t have an account yet?{" "}
         <Link href="/sign-up" className="text-secondary-mid">
           Sign up
         </Link>

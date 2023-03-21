@@ -78,7 +78,7 @@ function SignUp() {
           <label>WhatsApp Name</label>
           <input
             type="text"
-            placeholder="@whatsappname"
+            placeholder="@whatsapp name"
             required
             onInput={(e) =>
               setValues((prevValues) => ({
