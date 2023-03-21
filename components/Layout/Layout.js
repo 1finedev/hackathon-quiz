@@ -6,7 +6,7 @@ import Header from "./Header";
 const Layout = ({ children, className }) => {
   const { pathname } = useRouter();
   return (
-    <div className="flex flex-col min-h-screen justify-between">
+    <div className="flex flex-col min-h-screen justify-between gap-5">
 
       {pathname === "/sign-up" ||
       pathname === "/sign-in" ||
@@ -14,7 +14,7 @@ const Layout = ({ children, className }) => {
         <Header className={className} />
       )}
       <main
-        className={`${className} text-white pt-[3rem] h-[100vh] flex justify-center items-center flex-1`}
+        className={`${className} text-white pt-[3rem] flex justify-center items-center flex-1`}
       >
         {children}{" "}
       </main>
