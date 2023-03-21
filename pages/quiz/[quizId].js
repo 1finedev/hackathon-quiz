@@ -97,7 +97,7 @@ const Quiz = ({ quizId }) => {
     <div className=" flex flex-col xl:flex-row xl:flex bg-[101010] px-6 xl:px-0 w-full max-w-7xl gap-4 xl:gap-36 ml-auto">
       <div className="bg-[#101010] flex items-center justify-center basis-1/2 lg:basis-[55%] pt-14 pb-11">
         <div className="w-full max-w-[664px] space-y-14">
-          <div className="text-xl lg:text-3xl flex items-center justify-between w-full">
+          <div className="flex items-center justify-between w-full text-xl lg:text-3xl">
             <h1>Question {question?.count + 1 || 1}/20</h1>
             <div className="flex items-center gap-3">
               <svg
@@ -135,7 +135,7 @@ const Quiz = ({ quizId }) => {
 
           <div className="bg-[#1E2D3D] border border-[#1E2D3D] w-full rounded-lg overflow-hidden p-6">
             <div className="w-full h-full">
-              <p className="text-center text-lg md:text-xl">
+              <p className="text-lg text-center md:text-xl">
                 {question?.question}
               </p>
             </div>
@@ -144,13 +144,13 @@ const Quiz = ({ quizId }) => {
       </div>
 
       <div className="xl:bg-[#06BA6B] flex items-center justify-center basis-1/2 lg:basis-[45%] py-10 border-t-2 border-double border-[#06BA6B] xl:border-none">
-        <div className="w-full xl:w-4/5 md:w-fit space-y-6 lg:space-y-16">
+        <div className="w-full space-y-6 xl:w-4/5 md:w-fit lg:space-y-16">
           <h1 className="text-xl lg:text-3xl">Select your answer</h1>
 
           <form className="relative">
             {question?.options?.map((option) => (
               <div
-                className="flex flex-row items-center space-x-5 py-4"
+                className="flex flex-row items-center py-4 space-x-5"
                 key={option}
               >
                 <input
