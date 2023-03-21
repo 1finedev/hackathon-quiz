@@ -65,6 +65,7 @@ export const authOptions = {
       return true;
     },
     async session({ session, token }) {
+      token && (session.user = token.user);
       return session;
     },
     async jwt({ token, user }) {

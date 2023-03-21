@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     if (!session) return res.status(401).json({ error: "Unauthorized!" });
 
     try {
-      const quiz = await Quiz.findOneById(quizId);
+      const quiz = await Quiz.findById(quizId);
       if (!quiz) return res.status(404).json({ error: "Quiz not found!" });
 
       if (quiz.questionsAttempted.length === 20) {

@@ -4,6 +4,9 @@ import Card from "../components/Layout/Card";
 import Link from "next/link";
 import Button from "../components/Button";
 import { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const data = [
   {
@@ -19,27 +22,25 @@ const data = [
 ];
 
 function ChooseTest() {
+  const router = useRouter();
   const [quizType, setQuizType] = useState("Javascript");
 
-  const checkedPreviousType = useRef(false);
-
-  // ensure previous type is checked on page load for quiz continuity
-  useEffect(() => {
-    if (!checkedPreviousType.current) {
-      const previousType = localStorage.getItem("quizType");
-      if (previousType) {
-        setQuizType(JSON.parse(previousType));
-      }
-      checkedPreviousType.current = true;
-    }
-  }, []);
-
-  // update localStorage with current quiz type
-  useEffect(() => {
-    if (checkedPreviousType.current) {
-      localStorage.setItem("quizType", JSON.stringify(quizType));
-    }
-  }, [quizType]);
+  const handleProceed = () => {
+    toast.info("Starting quiz, please wait...");
+    axios
+      .post("/api/quiz/start", { category: quizType })
+      .then((res) => {
+        router.push(`quiz/${res.data.quiz._id}`);
+      })
+      .catch((err) => {
+        if (err.response.status === 409) {
+          toast.success("Quiz Resumed!");
+          router.push(`quiz/${err?.response?.data?.quiz?._id}`);
+        } else {
+          toast.error(err.response.data.message);
+        }
+      });
+  };
 
   return (
     <section className="flex flex-col bg  gap-5 p-5 max-w-[700px]">
@@ -67,18 +68,20 @@ function ChooseTest() {
       </section>
       <div className="flex mt-5 justify-between gap-9 items-center">
         <Link
-          href=""
+          href="/"
           className="max-w-[320px] text-center w-full border border-secondary-mid rounded-md py-3 bg-[url('../public/back.svg')] bg-no-repeat bg-[center_left_20%]"
         >
           Back
         </Link>
         <Button
+          onClick={handleProceed}
           classes="max-w-[320px] w-full text-center text-center bg-secondary-mid rounded-md py-3 "
           label="Start Quiz"
-        ></Button>
+        />
       </div>
     </section>
   );
 }
 
 export default ChooseTest;
+ChooseTest.auth = true;

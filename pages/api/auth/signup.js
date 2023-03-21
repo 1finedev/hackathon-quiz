@@ -30,15 +30,13 @@ export const handler = async (req, res) => {
 
     // create user and hash password
     try {
-      const newUser = await User.create({
+      await User.create({
         whatsappName,
         mobile,
         password,
         passwordConfirm,
       });
 
-      // remove user password from response
-      newUser.password = undefined;
       return res.status(201).json({
         status: "success",
         message: "Account created successfully",

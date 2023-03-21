@@ -34,7 +34,6 @@ const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const codeInputs = useRef();
   const codes = useMemo(() => countryCode.countries, []);
-  let timeout;
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -59,17 +58,9 @@ const SignIn = () => {
       toast.error(response.error);
     } else {
       toast.success("Login successful");
-      timeout = setTimeout(() => {
-        router.push("/choose-test");
-      }, 1000);
+      router.push("/choose-test");
     }
   };
-
-  useEffect(() => {
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [timeout]);
 
   return (
     <div className="  flex flex-col justify-center w-[90%] max-w-[350px] items-center gap-5">

@@ -7,12 +7,14 @@ import { SessionProvider } from "next-auth/react";
 import Loading from "../components/Loading";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NextNProgress from "nextjs-progressbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
+      <NextNProgress color="white" />
       <Layout className={inter.className}>
         {Component.auth ? (
           <Auth>
@@ -23,7 +25,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         )}
         <ToastContainer
           position="top-center"
-          autoClose={5000}
+          autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

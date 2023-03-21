@@ -1,26 +1,27 @@
 import connectToDb from "../../../backend/connectToDb";
 import User from "../../../backend/models/userModel";
 import Quiz from "../../../backend/models/quizModel";
+import getSession from "../../../backend/getSession";
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    const { userId, category } = req.body;
-    if (!userId || !category)
+    const { category } = req.body;
+    if (!category)
       return res
         .status(400)
         .json({ status: "error", message: "Incomplete details" });
 
     await connectToDb();
-    const user = await User.findOne({ _id: userId }).catch((err) => {
-      return res.status(500).json({ error: "Internal Server Error" });
-    });
 
-    if (!user) return res.status(404).json({ error: "User not found!" });
+    const session = await getSession(req, res);
+    if (!session) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
 
-    const quiz = await Quiz.findOne({ user: user._id, category });
+    const quiz = await Quiz.findOne({ user: session.user._id, category });
 
     if (quiz) {
-      return res.status(400).json({
+      return res.status(409).json({
         status: "error",
         message: "Quiz already started!",
         quiz,
@@ -28,7 +29,7 @@ const handler = async (req, res) => {
     }
 
     Quiz.create({
-      user: userId,
+      user: session.user._id,
       category,
     })
       .then((quiz) => {
@@ -42,6 +43,8 @@ const handler = async (req, res) => {
         console.log(err);
         return res.status(500).json({ error: "Internal Server Error" });
       });
+  } else {
+    return res.status(405).json({ message: "Method not allowed" });
   }
 };
 
