@@ -54,7 +54,7 @@ const FirstStep = () => {
               </a>
             </label>
           </div>
-          <Link href={"/sign-up"}>
+          <Link href={"/sign-in"}>
             <Button
               disabled={!checked}
               label="Get Started"

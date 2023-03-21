@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import Countdown from "react-countdown";
+import { BsArrowLeft } from "react-icons/bs";
 
 export async function getServerSideProps(context) {
   const { quizId } = context.query;
@@ -95,6 +96,17 @@ const Quiz = ({ quizId }) => {
 
   return (
     <div className="w-screen h-screen xl:flex bg-[101010] px-6 xl:px-0">
+      <div
+        onClick={() => router.back()}
+        className="fixed top-[10vh] left-[5vh] flex items-center"
+      >
+        <button>
+          <span className="text-white text-2xl">
+            <BsArrowLeft />
+          </span>
+        </button>
+        <span className="ml-2">Go back</span>
+      </div>
       <div className="bg-[#101010] flex items-center justify-center basis-1/2 lg:basis-[55%] pt-14 pb-11">
         <div className="w-full max-w-[664px] space-y-14">
           <div className="text-xl lg:text-3xl flex items-center justify-between w-full">

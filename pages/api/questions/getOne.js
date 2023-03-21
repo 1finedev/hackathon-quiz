@@ -32,6 +32,7 @@ export default async function handler(req, res) {
 
       const question = await Question.findOne({
         _id: { $nin: attempted },
+        category: quiz.category,
       });
 
       if (!question)
@@ -45,8 +46,6 @@ export default async function handler(req, res) {
           $inc: { totalAttempted: 1 },
         }
       );
-
-      console.log(quiz);
 
       return res.status(200).json({
         status: "success",

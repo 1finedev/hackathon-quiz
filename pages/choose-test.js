@@ -3,10 +3,11 @@ import reactLogo from "../public/react.svg";
 import Card from "../components/Layout/Card";
 import Link from "next/link";
 import Button from "../components/Button";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { BsArrowLeft } from "react-icons/bs";
 
 const data = [
   {
@@ -44,6 +45,17 @@ function ChooseTest() {
 
   return (
     <section className="flex flex-col bg  gap-5 p-5 max-w-[700px]">
+      <div
+        onClick={() => router.back()}
+        className="fixed top-[5vh] left-[5vh] flex items-center"
+      >
+        <button>
+          <span className="text-white text-2xl">
+            <BsArrowLeft />
+          </span>
+        </button>
+        <span className="ml-2">Go back</span>
+      </div>
       <h1 className="text-4xl md:text-center font-bold">Pick a Test</h1>
       <p className="md:text-center text-lg text-secondary-darkGray max-w-[320px] md:max-w-[750px]">
         In this following sections, we will test your knowledge on certain web

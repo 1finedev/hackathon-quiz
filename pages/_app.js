@@ -47,8 +47,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
 const Auth = ({ children }) => {
   const { data: session, status } = useSession();
-  console.log(session);
-
   const isUser = !!session?.user;
 
   useEffect(() => {
