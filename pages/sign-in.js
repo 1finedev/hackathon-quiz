@@ -1,31 +1,30 @@
-// import getSession from "../backend/getSession";
+import getSession from "../backend/getSession";
 import React, { useMemo, useRef } from "react";
 import { useState, useEffect } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import Alert from "../components/Alert";
 import countryCode from "../components/countryCod.json";
 import { toast } from "react-toastify";
 import hidePass from "../public/hide-password.svg";
 import showPass from "../public/show-password.svg";
 import Image from "next/image";
 
-// export async function getServerSideProps({ req, res }) {
-//   const session = await getSession(req, res);
-//   if (session) {
-//     return {
-//       redirect: {
-//         destination: "/onboarding",
-//         permanent: false,
-//       },
-//     };
-//   }
-//   return {
-//     props: {
-//       session,
-//     },
-//   };
-// }
+export async function getServerSideProps({ req, res }) {
+  const session = await getSession(req, res);
+  if (session) {
+    return {
+      redirect: {
+        destination: "/onboarding",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      session,
+    },
+  };
+}
 
 const SignIn = () => {
   const router = useRouter();
