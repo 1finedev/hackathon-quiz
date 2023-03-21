@@ -9,7 +9,7 @@ const useSecureCookies = process.env.NODE_ENV === "production" ? true : false;
 export const authOptions = {
   session: {
     strategy: "jwt",
-    maxAge: 10,
+    maxAge: 3600,
   },
   providers: [
     CredentialsProvider({

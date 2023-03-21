@@ -68,15 +68,11 @@ const Quiz = ({ quizId }) => {
             </div>
           </div>
 
-          <p className="text-sm lg:text-lg text-[#C9C9C9]">
-            In this section, we will test your knowledge on Javascript
-            technologies, please select the Language you would like to pick
-            first.
-          </p>
-
           <div className="bg-[#1E2D3D] border border-[#1E2D3D] w-full rounded-lg overflow-hidden p-6">
             <div className="w-full h-full">
-              <p className="text-center text-xl">{question?.question}</p>
+              <p className="text-center text-lg md:text-xl">
+                {question?.question}
+              </p>
             </div>
           </div>
         </div>
@@ -98,7 +94,7 @@ const Quiz = ({ quizId }) => {
                   checked={answer === option ? true : false}
                   onChange={(e) => setAnswer(e.target.value)}
                 />
-                <label className="text-2xl">{option}</label>
+                <p className="text-md md:xl">{option}</p>
               </div>
             ))}
             <button className="w-full h-[60px] max-w-[365px] rounded-lg bg-white text-xl text-[#011221] font-bold mt-10">
