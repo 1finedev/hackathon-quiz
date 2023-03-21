@@ -14,7 +14,7 @@ const FirstStep = () => {
   };
 
   const handleGetStarted = () => {
-    router.push("sign-up");
+    router.push("sign-in");
   };
 
   return (
