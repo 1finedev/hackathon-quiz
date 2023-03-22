@@ -16,6 +16,9 @@ export async function getStaticProps() {
       },
     },
     {
+      $unwind: "$user",
+    },
+    {
       $group: {
         _id: "$category",
         users: {
@@ -66,6 +69,9 @@ export async function getStaticProps() {
         foreignField: "_id",
         as: "user",
       },
+    },
+    {
+      $unwind: "$user",
     },
     {
       $group: {
@@ -165,7 +171,7 @@ export default function LeaderBoard({ data }) {
                         {no}
                       </span>
                       <h4 className="my-auto ml-3 font-semibold">
-                        {user.user?.[0]?.whatsappName?.replace("@", "")}
+                        {user.user?.whatsappName?.replace("@", "")}
                       </h4>
                     </div>
                     <h4 className="my-auto font-semibold">
