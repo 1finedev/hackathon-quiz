@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function LeaderBoard() {
   // Sample Data to be replaced by actual results
-  const sampleData = [
-    {
+  const [sampleData, setSampleData] = useState([])
+  function displayLeaderboard(type) {
+    // Sample Data gotten from API call
+    setSampleData([{
       name: "Glory",
       pointsJS: 20,
       pointsReact: 20
@@ -42,8 +44,16 @@ export default function LeaderBoard() {
       name: "Paul",
       pointsJS: 14,
       pointsReact: 14
+    }])
+    // Set Points based on user Input
+    if (type === "JavaScript") {
+      setSampleData(prevData => prevData.map(user => ({ ...user, points: user.pointsJS })));
+    } else if (type === "React") {
+      setSampleData(prevData => prevData.map(user => ({ ...user, points: user.pointsReact  })));
+    } else {
+      setSampleData(prevData => prevData.map(user => ({ ...user, points: (user.pointsJS + user.pointsReact) / 2 })));
     }
-  ]
+  }
   return (
     <div>
       <div className="text-center">
@@ -52,9 +62,9 @@ export default function LeaderBoard() {
       </div>
       <div className="mx-4 w-[95vw] md:w-[30rem]">
         <div className="bg-[#06BA6B] grid grid-cols-3">
-          <button className="text-center text-lg font-semibold py-4 hover:bg-[#018a51]">Overall</button>
-          <button className="text-center text-lg font-semibold py-4 hover:bg-[#018a51]">Javascript</button>
-          <button className="text-center text-lg font-semibold py-4 hover:bg-[#018a51]">React</button>
+          <button className="text-center text-lg font-semibold py-4 hover:bg-[#018a51]" onClick={() => displayLeaderboard("Overall")}>Overall</button>
+          <button className="text-center text-lg font-semibold py-4 hover:bg-[#018a51]" onClick={() => displayLeaderboard("JavaScript")}>JavaScript</button>
+          <button className="text-center text-lg font-semibold py-4 hover:bg-[#018a51]" onClick={() => displayLeaderboard("React")}>React</button>
         </div>
         {(sampleData.length > 0) ? <div className="mb-10">
           {sampleData.map((user, index) => {
@@ -67,7 +77,7 @@ export default function LeaderBoard() {
                 py-1 text-center w-8 rounded-full font-bold`}>{no}.</span>
                 <h4 className="my-auto ml-3 font-semibold">{user.name}</h4>
               </div>
-              <h4 className="my-auto font-semibold">{(user.pointsJS + user.pointsReact) / 2}</h4>
+              <h4 className="my-auto font-semibold">{user.points} pts</h4>
             </div>
             <hr className="bg-[#808080]" />
           </div>)
