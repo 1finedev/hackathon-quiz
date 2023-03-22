@@ -39,15 +39,6 @@ const userSchema = new mongoose.Schema(
       default: false,
       enum: [true, false],
     },
-    testScore: {
-      type: Array,
-      default: [
-        {
-          react: 0,
-          javascript: 0,
-        },
-      ],
-    },
   },
   {
     timestamps: true,
