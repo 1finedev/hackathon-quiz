@@ -69,12 +69,11 @@ const Quiz = ({ quizId }) => {
 
   const submitAnswer = async (e) => {
     e.preventDefault();
-    setLoading(true);
     if (!answer) {
       toast.error("Please select an answer");
       return;
     }
-
+    setLoading(true);
     axios
       .post("/api/questions/checkAnswer", {
         quizId,
