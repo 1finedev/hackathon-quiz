@@ -176,7 +176,7 @@ export default function LeaderBoard({ data }) {
                     </div>
                     <h4 className="my-auto font-semibold">
                       {user.totalCorrect} / {user.totalAttempted} (
-                      {user.percentage.toFixed(0)}%)
+                      {Math.round(user.percentage * 10) / 10}%)
                     </h4>
                   </div>
                   <hr className="bg-[#808080]" />
