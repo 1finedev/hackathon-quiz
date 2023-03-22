@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import Button from "../Button";
 import Link from "next/link";
 
 const FirstStep = () => {
   const [checked, setChecked] = useState(false);
 
+  const router = useRouter();
+
   const handleCheck = (e) => {
     setChecked(e.target.checked);
+  };
+
+  const handleGetStarted = () => {
+    router.push("sign-in");
   };
 
   return (
@@ -23,7 +30,7 @@ const FirstStep = () => {
         <div className="flex flex-col items-center px-10 py-40 md:grid md:items-start md:col-span-4 md:pr-0 md:pl-20">
           <div className="text-center  md:text-left">
             <h1 className="text-[1.3rem] font-semibold ">Hackathon 4.0 🔥</h1>
-            <p className="font-medium text-[#06BA6B] text-3xl mt-5">
+            <p className="font-medium text-[#06BA6B] text-4xl mt-5">
               Welcome to the assessment for the hackathon of a lifetime.
             </p>
             <p className="mt-5 text-sm font-normal">
@@ -54,13 +61,13 @@ const FirstStep = () => {
               </a>
             </label>
           </div>
-          <Link href={"/sign-in"}>
-            <Button
-              disabled={!checked}
-              label="Get Started"
-              classes="mt-14 w-64 text-sm bg-[#06BA6B] text-white font-medium py-2 px-6 rounded-md disabled:bg-gray-500"
-            />
-          </Link>
+
+          <Button
+            disabled={!checked}
+            label="Get Started"
+            classes="mt-14 w-64 text-md bg-[#06BA6B] text-white font-medium py-2 px-6 rounded-md disabled:bg-gray-500"
+            onClick={handleGetStarted}
+          />
         </div>
 
         <div className="hidden col-span-1 md:flex"></div>

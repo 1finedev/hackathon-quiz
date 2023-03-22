@@ -16,8 +16,10 @@ module.exports = {
         secondary: {
           mid: "#06BA6B",
           darkGray: "#e3e3e3",
+          transgreen:'rgba(6, 186, 107, 0.25)'
         },
       },
+    
     },
   },
   plugins: [],
