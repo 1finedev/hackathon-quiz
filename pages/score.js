@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 const Score = () => {
   const borderRef = useRef();
- 
 
   const router = useRouter();
   const [score, setScore] = useState({
@@ -27,20 +26,24 @@ const Score = () => {
   }, [router]);
   useEffect(() => {
     let progressEnd = score.percentage;
-    let progressStart =0;
-     const progress = setInterval(() => {
-         progressStart++
-         if(progressStart >= progressEnd){
-          clearInterval(progress)
-         }
-        
-         borderRef.current.style.background = `conic-gradient(${score.pass ? 'rgba(6, 186, 107, 1)' : 'rgba(255, 0, 0, 1)'}${progressStart * 3.6}deg, ${score.pass ? 'rgba(6, 186, 107, 0.25)' : ' rgba(255, 0, 0, 0.25)'} 0deg)`
-        },10)
-  
-        return () => {
-          clearInterval(progress)
-        }
-   },[score.pass,score.percentage])
+    let progressStart = 0;
+    const progress = setInterval(() => {
+      progressStart++;
+      if (progressStart >= progressEnd) {
+        clearInterval(progress);
+      }
+
+      borderRef.current.style.background = `conic-gradient(${
+        score.pass ? "rgba(6, 186, 107, 1)" : "rgba(255, 0, 0, 1)"
+      }${progressStart * 3.6}deg, ${
+        score.pass ? "rgba(6, 186, 107, 0.25)" : " rgba(255, 0, 0, 0.25)"
+      } 0deg)`;
+    }, 10);
+
+    return () => {
+      clearInterval(progress);
+    };
+  }, [score.pass, score.percentage]);
   console.log(score.pass);
   return (
     <section className="flex flex-col items-center gap-3">
@@ -73,6 +76,10 @@ const Score = () => {
         } font-semibold text-2xl lg:text-3xl`}
       >
         {score.pass ? "Congratulations! 🎉" : "Better luck next time! 🙁"}
+      </p>
+
+      <p className="text-[#C9C9C9] font-normal text-lg mt-4 text-center mx-4">
+        You will be informed if you are drafted into a hackathon team{" "}
       </p>
       <button
         onClick={() => router.push("/choose-test")}

@@ -1,16 +1,23 @@
 import { useEffect } from "react";
-import Questions from "../questions.json";
+// import Questions from "../questions.json";
 import axios from "axios";
 
 const Create = () => {
   const postAllQuestions = () => {
+    let timer = 0;
     Questions.forEach(async (question) => {
-      const response = await axios.post("/api/questions/create", question);
-      console.log(response.data.message);
+      setTimeout(async () => {
+        const response = await axios.post("/api/questions/create", question);
+        console.log(response.data.message);
+      }, timer);
+      timer += 1000;
     });
   };
 
-  //   postAllQuestions();
+  useEffect(() => {
+    //   postAllQuestions();
+  }, []);
+
   return <div>Create</div>;
 };
 
