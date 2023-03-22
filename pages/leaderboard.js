@@ -64,9 +64,12 @@ export default function LeaderBoard() {
       </div>
       <div className="mx-4 w-[95vw] md:w-[30rem]">
         <div className="bg-[#06BA6B] grid grid-cols-3">
-          <button className="text-center text-lg font-semibold py-4 hover:bg-[#018a51]" onClick={() => displayLeaderboard("Overall")}>Overall</button>
-          <button className="text-center text-lg font-semibold py-4 hover:bg-[#018a51]" onClick={() => displayLeaderboard("JavaScript")}>JavaScript</button>
-          <button className="text-center text-lg font-semibold py-4 hover:bg-[#018a51]" onClick={() => displayLeaderboard("React")}>React</button>
+        {["Overall", "JavaScript", "React"].map(name => {
+            return <button 
+              className={`text-center text-lg font-semibold py-4 hover:bg-[#018a51] ${type === name && "bg-[#005c36]"}`} 
+              onClick={() => displayLeaderboard(name)}>{name}
+            </button>
+          })}
         </div>
         {(sampleData.length > 0) ? <div className="mb-10">
           {sampleData.map((user, index) => {
