@@ -87,7 +87,7 @@ const SignIn = () => {
       >
         <fieldset className="flex flex-col min-w-0 gap-3 ">
           <label htmlFor="name" className="text-sm">
-            Whatsapp Number
+            Registered Number
           </label>
           <div className="relative flex max-w-full gap-2 py-1 pl-3 mt-2 bg-transparent border rounded-md cursor-pointer outline-0 border-secondary-darkGray">
             <div

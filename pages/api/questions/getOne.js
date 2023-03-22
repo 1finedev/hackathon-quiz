@@ -30,18 +30,19 @@ export default async function handler(req, res) {
         (attempted) => new mongoose.Types.ObjectId(attempted)
       );
 
-      const question = await Question.findOne({
-        _id: { $nin: attempted },
-        category: quiz.category,
-      });
+      // random question from the category excluding the attempted questions
+      const question = await Question.aggregate([
+        { $match: { _id: { $nin: attempted }, category: quiz.category } },
+        { $sample: { size: 1 } },
+      ]);
 
-      if (!question)
+      if (!question.length > 0)
         return res.status(404).json({ error: "No question found!" });
 
       await Quiz.findOneAndUpdate(
         { _id: quiz._id },
         {
-          $push: { questionsAttempted: question._id },
+          $push: { questionsAttempted: question[0]._id },
           nextQuestionEndIn: Date.now() + 1000 * 65,
           $inc: { totalAttempted: 1 },
         }
@@ -49,7 +50,7 @@ export default async function handler(req, res) {
 
       return res.status(200).json({
         status: "success",
-        question,
+        question: question[0],
         totalAttempted: quiz.totalAttempted,
       });
     } catch (error) {

@@ -43,7 +43,7 @@ function ChooseTest() {
   };
 
   return (
-    <section className="flex flex-col bg  gap-5 p-5 max-w-[700px]">
+    <section className="flex flex-col bg gap-5 mt-16 md:mt-0 p-5 max-w-[700px]">
       <div
         onClick={() => router.back()}
         className="fixed top-[5vh] left-[5vh] flex items-center"
