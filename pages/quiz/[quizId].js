@@ -49,9 +49,16 @@ const Quiz = ({ quizId }) => {
         setReset((prev) => !prev);
       })
       .catch((err) => {
-        console.log(err);
-        toast.error(err.response?.data?.error);
-        router.push("/choose-test");
+        if (err.response?.data?.error === "Quiz already completed!") {
+          toast.success("Quiz completed! Successfully");
+          router.push({
+            pathname: "/score",
+            query: { score: err.response?.data?.score },
+          });
+        } else {
+          toast.error(err.response?.data?.error);
+          router.push("/choose-test");
+        }
       });
     setLoading(false);
 
