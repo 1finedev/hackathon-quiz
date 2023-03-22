@@ -16,11 +16,6 @@ export async function getStaticProps() {
       },
     },
     {
-      $match: {
-        totalAttempted: { $gte: 20 },
-      },
-    },
-    {
       $group: {
         _id: "$category",
         users: {
@@ -94,11 +89,6 @@ export async function getStaticProps() {
     {
       $sort: {
         percentage: -1,
-      },
-    },
-    {
-      $match: {
-        totalAttempted: { $gte: 40 },
       },
     },
   ]);
