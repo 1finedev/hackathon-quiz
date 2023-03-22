@@ -87,6 +87,12 @@ const Score = () => {
       >
         Back to quiz
       </button>
+      <button
+        onClick={() => router.push("/leaderboard")}
+        className="px-4 py-2 mt-4 rounded-md bg-secondary-mid"
+      >
+        See Rankings
+      </button>
     </section>
   );
 };
