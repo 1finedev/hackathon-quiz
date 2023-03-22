@@ -3,7 +3,9 @@ import React, { useState } from "react";
 export default function LeaderBoard() {
   // Sample Data to be replaced by actual results
   const [sampleData, setSampleData] = useState([])
+  const [type, setType] = useState("")
   function displayLeaderboard(type) {
+    setType(type)
     // Sample Data gotten from API call
     setSampleData([{
       name: "Glory",
@@ -47,11 +49,11 @@ export default function LeaderBoard() {
     }])
     // Set Points based on user Input
     if (type === "JavaScript") {
-      setSampleData(prevData => prevData.map(user => ({ ...user, points: user.pointsJS })));
+      setSampleData(prevData => prevData.map(user => ({ ...user, points: user.pointsJS })).sort((a, b) => b.points - a.points));
     } else if (type === "React") {
-      setSampleData(prevData => prevData.map(user => ({ ...user, points: user.pointsReact  })));
+      setSampleData(prevData => prevData.map(user => ({ ...user, points: user.pointsReact })).sort((a, b) => b.points - a.points));
     } else {
-      setSampleData(prevData => prevData.map(user => ({ ...user, points: (user.pointsJS + user.pointsReact) / 2 })));
+      setSampleData(prevData => prevData.map(user => ({ ...user, points: (user.pointsJS + user.pointsReact) / 2 })).sort((a, b) => b.points - a.points));
     }
   }
   return (
