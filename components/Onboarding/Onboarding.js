@@ -27,7 +27,7 @@ const FirstStep = () => {
     >
       <div className=" md:grid md:grid-cols-10 lg:gap-36">
         {/* Left Column */}
-        <div className="flex flex-col items-center px-10 py-40 md:grid md:items-start md:col-span-4 md:pr-0 md:pl-20">
+        <div className="flex flex-col items-center px-10 py-20 md:grid md:items-start md:col-span-4 md:pr-0 md:pl-20">
           <div className="text-center  md:text-left">
             <h1 className="text-[1.3rem] font-semibold ">Hackathon 4.0 🔥</h1>
             <p className="font-medium text-[#06BA6B] text-4xl mt-5">
@@ -74,7 +74,7 @@ const FirstStep = () => {
 
         {/* Right Column */}
         <div
-          className="col-span-5 mt-28 h-[80%] md:relative text-white hidden md:flex"
+          className="col-span-5 mt-16 h-[80%] md:relative text-white hidden md:flex"
           style={{
             backgroundImage: "url(/homeside.jpg)",
             backgroundRepeat: "no-repeat",
