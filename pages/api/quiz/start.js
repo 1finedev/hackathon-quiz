@@ -1,5 +1,4 @@
 import connectToDb from "../../../backend/connectToDb";
-import User from "../../../backend/models/userModel";
 import Quiz from "../../../backend/models/quizModel";
 import getSession from "../../../backend/getSession";
 

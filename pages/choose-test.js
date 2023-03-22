@@ -44,7 +44,6 @@ function ChooseTest() {
 
   return (
     <section className="flex flex-col bg  gap-5 p-5 max-w-[700px]">
-
       <h1 className="text-4xl md:text-center font-bold">Pick a Test</h1>
       <p className="md:text-center text-lg text-secondary-darkGray max-w-[320px] md:max-w-[750px]">
         In this following sections, we will test your knowledge on certain web
