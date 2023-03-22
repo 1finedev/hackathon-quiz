@@ -172,14 +172,15 @@ export default function LeaderBoard({ data }) {
                         } 
                 py-1 text-center w-8 rounded-full font-bold`}
                       >
-                        {no}.
+                        {no}
                       </span>
                       <h4 className="my-auto ml-3 font-semibold">
                         {user.user[0].whatsappName.replace("@", "")}
                       </h4>
                     </div>
                     <h4 className="my-auto font-semibold">
-                      {user.totalCorrect} / {user.totalAttempted} pts
+                      {user.totalCorrect} / {user.totalAttempted} (
+                      {user.percentage.toFixed(0)}%)
                     </h4>
                   </div>
                   <hr className="bg-[#808080]" />
