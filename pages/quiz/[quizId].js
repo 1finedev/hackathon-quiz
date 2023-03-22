@@ -94,7 +94,7 @@ const Quiz = ({ quizId }) => {
   }, []);
 
   return (
-    <div className="w-screen h-screen xl:flex bg-[101010] px-6 xl:px-0">
+    <div className=" flex flex-col xl:flex-row xl:flex bg-[101010] px-6 xl:px-0 w-full max-w-7xl gap-4 xl:gap-36 ml-auto">
       <div className="bg-[#101010] flex items-center justify-center basis-1/2 lg:basis-[55%] pt-14 pb-11">
         <div className="w-full max-w-[664px] space-y-14">
           <div className="flex items-center justify-between w-full text-xl lg:text-3xl">
