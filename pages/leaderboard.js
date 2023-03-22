@@ -8,16 +8,16 @@ export async function getStaticProps() {
 
   const categoriesResult = await Quiz.aggregate([
     {
-      $match: {
-        //   totalAttempted: { $gte: 20 },
-      },
-    },
-    {
       $lookup: {
         from: "users",
         localField: "user",
         foreignField: "_id",
         as: "user",
+      },
+    },
+    {
+      $match: {
+        totalAttempted: { $gte: 20 },
       },
     },
     {
@@ -98,7 +98,7 @@ export async function getStaticProps() {
     },
     {
       $match: {
-        //   totalAttempted: { $gte: 40 },
+        totalAttempted: { $gte: 40 },
       },
     },
   ]);
@@ -110,7 +110,7 @@ export async function getStaticProps() {
 
   return {
     props: { data: JSON.parse(JSON.stringify(data)) }, // nextjs serialization issue
-    revalidate: 60, // Regenerate list every minute
+    revalidate: 10, // Regenerate list every minute
   };
 }
 
@@ -175,7 +175,7 @@ export default function LeaderBoard({ data }) {
                         {no}
                       </span>
                       <h4 className="my-auto ml-3 font-semibold">
-                        {user.user[0].whatsappName.replace("@", "")}
+                        {user.user?.[0]?.whatsappName?.replace("@", "")}
                       </h4>
                     </div>
                     <h4 className="my-auto font-semibold">
