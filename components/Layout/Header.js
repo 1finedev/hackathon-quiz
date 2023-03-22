@@ -36,6 +36,9 @@ const Header = ({ className }) => {
           <li className="">
             <Link href="/sign-in">Quiz</Link>
           </li>
+          <li className="">
+            <Link href="/leaderboard">Leaderboard</Link>
+          </li>
 
           <li className="">
             <Link href="https://chat.whatsapp.com/HlIjg2kPxIOAOyG1Sbcm9H">
