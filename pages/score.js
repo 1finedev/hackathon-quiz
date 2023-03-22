@@ -66,3 +66,4 @@ const Score = () => {
 };
 
 export default Score;
+Score.auth = true;
