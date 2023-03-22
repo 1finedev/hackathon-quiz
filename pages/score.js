@@ -40,7 +40,7 @@ const Score = () => {
         return () => {
           clearInterval(progress)
         }
-   },[])
+   },[score.pass,score.percentage])
   console.log(score.pass);
   return (
     <section className="flex flex-col items-center gap-3">
