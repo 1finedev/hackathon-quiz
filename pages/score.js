@@ -30,9 +30,10 @@ const Score = () => {
     let progressStart =0;
      const progress = setInterval(() => {
          progressStart++
-         if(progressStart === progressEnd){
+         if(progressStart >= progressEnd){
           clearInterval(progress)
          }
+        
          borderRef.current.style.background = `conic-gradient(${score.pass ? 'rgba(6, 186, 107, 1)' : 'rgba(255, 0, 0, 1)'}${progressStart * 3.6}deg, ${score.pass ? 'rgba(6, 186, 107, 0.25)' : ' rgba(255, 0, 0, 0.25)'} 0deg)`
         },10)
   
