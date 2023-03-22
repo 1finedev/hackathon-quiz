@@ -8,7 +8,7 @@ function Group() {
   const [sorted] = useState(true);
 
   return (
-    <div className="w-full h-full xl:flex justify-center p-6 xl:p-0">
+    <div className="w-full max-w-[1920px] h-full xl:flex justify-center p-6 xl:p-0">
       <div className="basis-[55%] flex flex-col items-center justify-center">
         <div className="py-10">
           {!sorted ? (
