@@ -69,12 +69,11 @@ const Quiz = ({ quizId }) => {
 
   const submitAnswer = async (e) => {
     e.preventDefault();
-    setLoading(true);
     if (!answer) {
       toast.error("Please select an answer");
       return;
     }
-
+    setLoading(true);
     axios
       .post("/api/questions/checkAnswer", {
         quizId,
@@ -179,13 +178,16 @@ const Quiz = ({ quizId }) => {
                     className="flex flex-row items-center py-4 space-x-5"
                     key={option}
                   >
-                    <input
-                      type="radio"
-                      id={option}
-                      value={option}
-                      checked={answer === option ? true : false}
-                      onChange={(e) => setAnswer(e.target.value)}
-                    />
+                    <div className="flex-shrink-0 ">
+                      <input
+                        type="radio"
+                        id={option}
+                        value={option}
+                        checked={answer === option ? true : false}
+                        onChange={(e) => setAnswer(e.target.value)}
+                      />
+                    </div>
+
                     <label htmlFor={option} className="text-md md:xl">
                       {option}
                     </label>

@@ -43,13 +43,12 @@ function ChooseTest() {
   };
 
   return (
-    <section className="flex flex-col bg  gap-5 p-5 max-w-[700px]">
-      <h1 className="text-4xl md:text-center font-bold">Pick a Test</h1>
+
       <p className="md:text-center text-lg text-secondary-darkGray max-w-[320px] md:max-w-[750px]">
-        In this following sections, we will test your knowledge on certain web
-        technologies, please select the Language you would like to pick first.
+        You must take these tests in order to be qualify for the hackathon!
+        Choose a test below to get started
       </p>
-      <section className="flex flex-col gap-7 justify-between  md:flex-row">
+      <section className="flex flex-col justify-between gap-7 md:flex-row">
         {data.map((eachType) => (
           <Card
             classes={
@@ -66,7 +65,7 @@ function ChooseTest() {
           />
         ))}
       </section>
-      <div className="flex mt-5 justify-between gap-9 items-center">
+      <div className="flex items-center justify-between mt-5 gap-9">
         <Link
           href="/"
           className="max-w-[320px] text-center w-full border border-secondary-mid rounded-md py-3 bg-[url('../public/back.svg')] bg-no-repeat bg-[center_left_20%]"

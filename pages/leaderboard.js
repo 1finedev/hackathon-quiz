@@ -8,6 +8,11 @@ export async function getStaticProps() {
 
   const categoriesResult = await Quiz.aggregate([
     {
+      $match: {
+        totalAttempted: { $gte: 20 },
+      },
+    },
+    {
       $lookup: {
         from: "users",
         localField: "user",
@@ -95,6 +100,11 @@ export async function getStaticProps() {
     {
       $sort: {
         percentage: -1,
+      },
+    },
+    {
+      $match: {
+        totalAttempted: { $gte: 40 },
       },
     },
   ]);
