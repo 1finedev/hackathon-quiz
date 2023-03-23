@@ -43,19 +43,7 @@ function ChooseTest() {
   };
 
   return (
-    <section className="flex flex-col bg gap-5 mt-16 md:mt-0 p-5 max-w-[700px]">
-      <div
-        onClick={() => router.back()}
-        className="fixed top-[5vh] left-[5vh] flex items-center"
-      >
-        <button>
-          <span className="text-2xl text-white">
-            <BsArrowLeft />
-          </span>
-        </button>
-        <span className="ml-2">Go back</span>
-      </div>
-      <h1 className="text-4xl font-bold md:text-center">Pick a Test</h1>
+
       <p className="md:text-center text-lg text-secondary-darkGray max-w-[320px] md:max-w-[750px]">
         You must take these tests in order to be qualify for the hackathon!
         Choose a test below to get started
