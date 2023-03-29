@@ -1,6 +1,7 @@
 import connectToDb from "../backend/connectToDb";
 import Group from "../backend/models/groupModel";
 import User from "../backend/models/userModel";
+import Link from "next/link";
 
 export async function getStaticProps() {
   await connectToDb();
@@ -55,7 +56,19 @@ const Groups = ({ data }) => {
                       key={member.whatsappName}
                       className="text-[#C9C9C9] text-lg font-bold"
                     >
-                      {index + 1}. @{member.whatsappName.replace("@", "")}
+                      <Link
+                        href={`https://wa.me/${member.mobile
+                          .replace("+", "")
+                          .replaceAll(
+                            " ",
+                            ""
+                          )}?text=Hello%you%20are%20a%20member%20in%20my%20hackathon%20group%20${
+                          group.name
+                        }%20how%20do%20we%20begin?`}
+                      >
+                        {" "}
+                        @{member.whatsappName.replace("@", "")}
+                      </Link>
                     </li>
                   );
                 })}
