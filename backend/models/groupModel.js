@@ -75,6 +75,14 @@ const groupSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+groupSchema.virtual("user", {
+  ref: "User",
+  localField: "members", // Of post collection
+  foreignField: "_id", // Of user collection
+  justOne: true,
+});
+
 mongoose.models = {};
 const Group = mongoose.model("Group", groupSchema);
 module.exports = Group;

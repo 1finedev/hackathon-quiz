@@ -19,6 +19,7 @@ const handler = async (req, res) => {
       const question = await Question.findOne({ _id: questionId }).select(
         "answer"
       );
+
       if (!question)
         return res.status(404).json({ error: "Question not found!" });
 
@@ -27,6 +28,8 @@ const handler = async (req, res) => {
       });
 
       if (!quiz) return res.status(404).json({ error: "Quiz not found!" });
+
+      // TODO: check if time is up
 
       // update score if answer is correct or wrong
       await Quiz.findOneAndUpdate(

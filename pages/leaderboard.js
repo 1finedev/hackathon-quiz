@@ -9,7 +9,7 @@ export async function getStaticProps() {
   const categoriesResult = await Quiz.aggregate([
     {
       $match: {
-        totalAttempted: { $gte: 20 },
+        // totalAttempted: { $gte: 20 },
       },
     },
     {
