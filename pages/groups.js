@@ -1,10 +1,15 @@
 import connectToDb from "../backend/connectToDb";
 import Group from "../backend/models/groupModel";
+import User from "../backend/models/userModel";
 
 export async function getStaticProps() {
   await connectToDb();
 
-  const result = await Group.find({}).populate("members");
+  const result = await Group.find({}).populate({
+    path: "members",
+    select: "whatsappName mobile",
+    model: User,
+  });
 
   return {
     props: { data: JSON.parse(JSON.stringify(result)) }, // nextjs serialization issue
@@ -47,7 +52,7 @@ const Groups = ({ data }) => {
                 {group.members.map((member, index) => {
                   return (
                     <li
-                      key={member.name}
+                      key={member.whatsappName}
                       className="text-[#C9C9C9] text-lg font-bold"
                     >
                       {index + 1}. @{member.whatsappName.replace("@", "")}
