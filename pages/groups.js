@@ -62,7 +62,7 @@ const Groups = ({ data }) => {
                           .replaceAll(
                             " ",
                             ""
-                          )}?text=Hello%you%20are%20a%20member%20in%20my%20hackathon%20group%20${
+                          )}?text=Hello%20you%20are%20a%20member%20in%20my%20hackathon%20group%20${
                           group.name
                         }%20how%20do%20we%20begin?`}
                       >
