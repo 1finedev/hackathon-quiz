@@ -43,7 +43,7 @@ function ChooseTest() {
   };
 
   return (
-
+    <section>
       <p className="md:text-center text-lg text-secondary-darkGray max-w-[320px] md:max-w-[750px]">
         You must take these tests in order to be qualify for the hackathon!
         Choose a test below to get started
