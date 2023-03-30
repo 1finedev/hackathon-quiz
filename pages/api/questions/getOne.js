@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       const quiz = await Quiz.findById(quizId);
       if (!quiz) return res.status(404).json({ error: "Quiz not found!" });
 
-      if (quiz.questionsAttempted.length === 20) {
+      if (quiz.totalAttempted === 20) {
         return res.status(400).json({
           error: "Quiz already completed!",
           score: quiz.totalCorrect,
