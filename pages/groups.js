@@ -14,6 +14,7 @@ export async function getStaticProps() {
 
   return {
     props: { data: JSON.parse(JSON.stringify(result)) }, // nextjs serialization issue
+    revalidate: 10, // Regenerate list
   };
 }
 
