@@ -25,14 +25,14 @@ export async function getServerSideProps({ req, res }) {
   });
 
   return {
-    props: { group: JSON.parse(JSON.stringify(group[0])) }, // nextjs serialization issue
+    props: {
+      group: JSON.parse(JSON.stringify(group.length > 0 ? group[0] : [])),
+    }, // nextjs serialization issue
   };
 }
 
 function Profile({ group }) {
   const { data: session } = useSession();
-
-  // 6419f7e723335916b5e22c44
 
   return (
     <div className="w-full max-w-[1920px] h-full xl:flex justify-center p-6 xl:p-0">
