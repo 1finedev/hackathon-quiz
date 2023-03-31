@@ -53,7 +53,7 @@ const groupSchema = new mongoose.Schema(
       type: [String],
       default: [
         "Appointment time is 15 minutes, therefore, only 4 appointments can be booked per hour",
-        "A user cannot opt to not choose a hospital, it can be suggested to the, they must choose a state, city, area and medical department first",
+        "A user can opt to not choose a hospital, it can be suggested to the, they must choose a state, city, area and medical department first",
         "They must enter medical details like height, weight, blood group, allergies, etc on their medical history profile page",
         "Use your intuition to come up with more features and restrictions",
       ],
